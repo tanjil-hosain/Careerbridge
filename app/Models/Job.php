@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Job extends Model
+{
+        protected $table = 'job_posts';
+        protected $fillable = [
+        'company_id',
+        'category_id',
+        'title',
+        'slug',
+        'job_type',
+        'location',
+        'salary',
+        'experience',
+        'deadline',
+        'description',
+        'requirements',
+        'status',
+    ];
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+}
