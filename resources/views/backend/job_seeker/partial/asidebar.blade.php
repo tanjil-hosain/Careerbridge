@@ -12,20 +12,20 @@
             <!--navigation-->
             <ul class="metismenu" id="menu">
                 <li>
-                    <a href="javascript:;">
+                    <a href=" {{route('job_seeker.dashboard')}}">
                         <div class="parent-icon"><i class="bi bi-file-earmark-code"></i>
                         </div>
                         <div class="menu-title">Dashboard</div>
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="javascript:;">
                         <div class="parent-icon"><i class="bi bi-file-earmark-code"></i>
                         </div>
                         <div class="menu-title">My Profile</div>
                     </a>
                       <ul>
-                        <li> <a href=""><i class="bi bi-arrow-right-short"></i> Profile Overview</a>
+                        <li> <a href="{{route('job_seeker.profile.index')}}"><i class="bi bi-arrow-right-short"></i> Profile Overview</a>
                         </li>
                         <li> <a href=""><i class="bi bi-arrow-right-short"></i>Edit Profile</a>
                         </li>
