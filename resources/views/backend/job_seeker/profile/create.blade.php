@@ -17,7 +17,7 @@
     <div class="card">
         <div class="card-body">
 
-            <form action=""
+            <form action="{{route('job_seeker.profile.store')}}"
                   method="POST"
                   enctype="multipart/form-data">
 

@@ -12,10 +12,15 @@ class JobSeekerProfileController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $profile = auth()->user()->jobSeekerProfile;
+    { $profile = auth()->user()->jobSeekerProfile;
 
-        return view('backend.job_seeker.profile.index', compact('profile'));
+    if (!$profile) {
+        return redirect()
+            ->route('job_seeker.profile.create')
+            ->with('warning', 'Please create your profile first.');
+    }
+
+    return view('backend.job_seeker.profile.index', compact('profile'));
     }
 
     /**
@@ -36,9 +41,48 @@ class JobSeekerProfileController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
+{
+    $request->validate([
+        'full_name' => 'required|string',
+        'phone'=> 'nullable|string|max:20',
+        'address'=> 'nullable|string',
+        'education'=> 'nullable|string|max:255',
+        'skills'=> 'nullable|string|max:255',
+        'experience'=> 'nullable|string|max:255',
+        'resume'=> 'nullable|mimes:pdf|max:2048',
+        'profile_photo'=> 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+    ]);
+
+    $resumePath = null;
+    $photoPath = null;
+
+    if ($request->hasFile('resume')) {
+        $resumePath = $request->file('resume')->store('resumes', 'public');
     }
+
+    if ($request->hasFile('profile_photo')) {
+        $photoPath = $request->file('profile_photo')->store('job_seekers', 'public');
+    }
+
+    $profile = new JobSeekerProfile();
+
+    $profile->user_id = auth()->id();
+    $profile->full_name = $request->full_name;
+    $profile->phone = $request->phone;
+    $profile->address = $request->address;
+    $profile->education = $request->education;
+    $profile->skills = $request->skills;
+    $profile->experience = $request->experience;
+    $profile->resume = $resumePath;
+    $profile->profile_photo = $photoPath;
+    $profile->status = true;
+
+    $profile->save();
+
+    return redirect()
+        ->route('job_seeker.profile.index')
+        ->with('success', 'Profile Created Successfully');
+}
 
     /**
      * Display the specified resource.
