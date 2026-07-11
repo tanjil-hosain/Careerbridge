@@ -88,7 +88,7 @@ class JobSeekerProfileController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(JobSeekerProfile $jobSeekerProfile)
+    public function show(JobSeekerProfile  $profile)
     {
         //
     }
@@ -96,21 +96,21 @@ class JobSeekerProfileController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(JobSeekerProfile $jobSeekerProfile)
+    public function edit(JobSeekerProfile  $profile)
     {
-        if ($jobSeekerProfile->user_id != auth()->id()) {
+        if ($profile->user_id != auth()->id()) {
             abort(403);
         }
 
-        return view('backend.job_seeker.profile.edit', compact('profile'));
+        return view('backend.job_seeker.profile.edit', ['jobSeekerProfile'=>$profile]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, JobSeekerProfile $jobSeekerProfile)
+    public function update(Request $request, JobSeekerProfile  $profile)
     {
-        if ($jobSeekerProfile->user_id != auth()->id()) {
+        if ($profile->user_id != auth()->id()) {
             abort(403);
         }
 
@@ -126,21 +126,21 @@ class JobSeekerProfileController extends Controller
         ]);
 
         if ($request->hasFile('resume')) {
-            $jobSeekerProfile->resume = $request->file('resume')->store('resumes', 'public');
+            $profile->resume = $request->file('resume')->store('resumes', 'public');
         }
 
         if ($request->hasFile('profile_photo')) {
-            $jobSeekerProfile->profile_photo = $request->file('profile_photo')->store('job_seekers', 'public');
+            $profile->profile_photo = $request->file('profile_photo')->store('job_seekers', 'public');
         }
 
-        $jobSeekerProfile->full_name = $request->full_name;
-        $jobSeekerProfile->phone = $request->phone;
-        $jobSeekerProfile->address = $request->address;
-        $jobSeekerProfile->education = $request->education;
-        $jobSeekerProfile->skills = $request->skills;
-        $jobSeekerProfile->experience = $request->experience;
+        $profile->full_name = $request->full_name;
+        $profile->phone = $request->phone;
+        $profile->address = $request->address;
+        $profile->education = $request->education;
+        $profile->skills = $request->skills;
+        $profile->experience = $request->experience;
 
-        $jobSeekerProfile->save();
+        $profile->save();
 
         return redirect()->route('job_seeker.profile.index')
             ->with('success', 'Profile Updated Successfully');
@@ -149,7 +149,7 @@ class JobSeekerProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(JobSeekerProfile $jobSeekerProfile)
+    public function destroy(JobSeekerProfile  $profile)
     {
         //
     }

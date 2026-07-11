@@ -11,7 +11,7 @@
             </p>
         </div>
 
-        <a href="" class="btn btn-primary">
+        <a href="{{route('job_seeker.profile.edit', $profile->id)}}" class="btn btn-primary">
             <i class="bi bi-pencil-square me-1"></i>
             Edit Profile
         </a>
