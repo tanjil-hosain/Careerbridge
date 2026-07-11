@@ -13,7 +13,9 @@ class JobSeekerProfileController extends Controller
      */
     public function index()
     {
-        //
+        $profile = auth()->user()->jobSeekerProfile;
+
+        return view('backend.job_seeker.profile.index', compact('profile'));
     }
 
     /**
@@ -21,7 +23,13 @@ class JobSeekerProfileController extends Controller
      */
     public function create()
     {
-        //
+        $profile = auth()->user()->jobSeekerProfile;
+
+        if ($profile) {
+            return redirect()->route('job_seeker.profile.index');
+        }
+
+        return view('backend.job_seeker.profile.create');
     }
 
     /**

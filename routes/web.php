@@ -45,8 +45,10 @@ Route::prefix('employer')->middleware(['auth', 'role:employer'])->name('employer
     Route::resource('/jobs', JobController::class);
 });
 
-Route::prefix('job_seekers')->middleware(['auth', 'role:job-seekers'])->name('job_seeker.')->group(function(){
-    Route::get('/dashboard', [JobSeekerProfileController::class, 'job_seekerdDashboard' ])->name('dashboard');
+Route::prefix('job_seeker')->middleware(['auth', 'role:job_seeker'])->name('job_seeker.')->group(function(){
+    Route::get('/dashboard', [DashboardController::class, 'job_seekerdDashboard' ])->name('dashboard');
+
+    Route::resource('profile', JobSeekerProfileController::class);
 
 });
 
