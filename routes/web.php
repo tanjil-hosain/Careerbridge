@@ -59,4 +59,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+//Front end
+
+Route::get('/jobs/{job}', [HomeController::class, 'jobDetails'])
+    ->name('jobs.details');
+
 require __DIR__.'/auth.php';

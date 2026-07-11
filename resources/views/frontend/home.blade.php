@@ -192,7 +192,7 @@
                                                                 <div class="col-lg-4 col-md-6">
                                     <div class="card-grid-2 hover-up">
                                         <div class="text-center card-grid-2-image">
-                                            <a href="job-single.html">
+                                            <a href="{{route('jobs.details', $job)}}">
                                                 <figure><img src="{{ asset('storage/'.$job->company->logo) }}"
                                                         alt="jobhub" /></figure>
                                             </a>
@@ -201,7 +201,7 @@
                                         <div class="card-block-info">
                                             <div class="row">
                                                 <div class="col-lg-7 col-6">
-                                                    <a href="employers-single.html" class="card-2-img-text">
+                                                    <a href="" class="card-2-img-text">
                                                         <span class="card-grid-2-img-small"><img
                                                                 src="{{ asset('storage/'.$job->company->logo) }}"
                                                                 alt="jobhub" /></span> <span>{{$job->company->company_name}}</span>

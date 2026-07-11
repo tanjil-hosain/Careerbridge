@@ -20,6 +20,13 @@ class HomeController extends Controller
         $categories = Category::where('status', true)->get();
         $companies = Company::where('status', true)->latest()->take(8)->get();
 
-        return view('frontend.home', compact('jobs', 'categories','companies'));
+        return view('frontend.home', compact('jobs', 'categories', 'companies'));
+    }
+
+    public function jobDetails(Job $job)
+    {
+        $job->load(['company', 'category']);
+
+        return view('frontend.pages.job_details', compact('job'));
     }
 }
