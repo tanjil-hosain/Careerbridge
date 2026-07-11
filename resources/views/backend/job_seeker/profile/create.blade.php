@@ -9,7 +9,7 @@
             <p class="mb-0 text-secondary">Complete your job seeker profile.</p>
         </div>
 
-        <a href="" class="btn btn-light">
+        <a href="''{{route('job_seeker.profile.index')}}" class="btn btn-light">
             Back
         </a>
     </div>
@@ -105,7 +105,7 @@
                             Create Profile
                         </button>
 
-                        <a href=""
+                        <a href="{{route('job_seeker.profile.index')}}"
                            class="btn btn-light">
                             Cancel
                         </a>

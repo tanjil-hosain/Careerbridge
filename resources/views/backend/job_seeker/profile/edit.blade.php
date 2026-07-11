@@ -128,7 +128,7 @@
                             Update Profile
                         </button>
 
-                        <a href="{{ route('employer.jobs.index') }}"
+                        <a href="{{ route('job_seeker.profile.edit') }}"
                            class="btn btn-light">
                             Cancel
                         </a>
