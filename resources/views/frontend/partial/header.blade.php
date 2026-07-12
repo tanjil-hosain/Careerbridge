@@ -3,7 +3,8 @@
             <div class="main-header">
                 <div class="header-left">
                     <div class="header-logo">
-                        <a href="index.html" class="d-flex"><img alt="jobhub" src="{{asset('')}}assets/imgs/theme/jobhub-logo.svg" /></a>
+                        <a href="index.html" class="d-flex"><img alt="jobhub"
+                                src="{{ asset('') }}assets/imgs/theme/jobhub-logo.svg" /></a>
                     </div>
                     <div class="header-nav">
                         <nav class="nav-main-menu d-none d-xl-block">
@@ -82,8 +83,30 @@
                 </div>
                 <div class="header-right">
                     <div class="block-signin">
-                        <a href="#" class="text-link-bd-btom hover-up">Apply Now</a>
-                        <a href="{{route('login')}}" class="btn btn-default btn-shadow ml-40 hover-up">Sign in</a>
+
+                        @guest
+                            <a href="{{ route('login') }}" class="btn btn-default btn-shadow ml-40 hover-up">
+                                Sign In
+                            </a>
+                        @endguest
+
+                        @auth
+
+                            @php
+                                $dashboardRoute = match (auth()->user()->role) {
+                                    'admin' => route('admin.dashboard'),
+                                    'employer' => route('employer.dashboard'),
+                                    'job_seeker' => route('job_seeker.dashboard'),
+                                    default => '#',
+                                };
+                            @endphp
+
+                            <a href="{{ $dashboardRoute }}" class="btn btn-default btn-shadow ml-40 hover-up">
+                                Dashboard
+                            </a>
+
+                        @endauth
+
                     </div>
                 </div>
             </div>
@@ -93,7 +116,7 @@
         <div class="mobile-header-wrapper-inner">
             <div class="mobile-header-top">
                 <div class="user-account">
-                    <img src="{{asset('')}}assets/imgs/avatar/ava_1.png" alt="jobhub" />
+                    <img src="{{ asset('') }}assets/imgs/avatar/ava_1.png" alt="jobhub" />
                     <div class="content">
                         <h6 class="user-name">Howdy, <span class="text-brand">AliThemes</span></h6>
                         <p class="font-xs text-muted">You have 2 new messages</p>
@@ -185,24 +208,59 @@
                         <!-- mobile menu end -->
                     </div>
                     <div class="mobile-account">
+
                         <h6 class="mb-10">Your Account</h6>
+
                         <ul class="mobile-menu font-heading">
-                            <li><a href="#">Profile</a></li>
-                            <li><a href="#">Work Preferences</a></li>
-                            <li><a href="#">My Boosted Shots</a></li>
-                            <li><a href="#">My Collections</a></li>
-                            <li><a href="#">Account Settings</a></li>
-                            <li><a href="#">Go Pro</a></li>
-                            <li><a href="#">Sign Out</a></li>
+
+                            @guest
+
+                                <li>
+                                    <a href="{{ route('login') }}">Login</a>
+                                </li>
+
+                            @endguest
+
+
+                            @auth
+
+                                <li>
+                                    <a href="{{ $dashboardRoute }}">
+                                        Dashboard
+                                    </a>
+                                </li>
+
+                                <li>
+
+                                    <form action="{{ route('logout') }}" method="POST">
+
+                                        @csrf
+
+                                        <button type="submit" class="border-0 bg-transparent">
+                                            Logout
+                                        </button>
+
+                                    </form>
+
+                                </li>
+
+                            @endauth
+
                         </ul>
+
                     </div>
                     <div class="mobile-social-icon mb-50">
                         <h6 class="mb-25">Follow Us</h6>
-                        <a href="#"><img src="{{asset('')}}assets/imgs/theme/icons/icon-facebook.svg" alt="jobhub" /></a>
-                        <a href="#"><img src="{{asset('')}}assets/imgs/theme/icons/icon-twitter.svg" alt="jobhub" /></a>
-                        <a href="#"><img src="{{asset('')}}assets/imgs/theme/icons/icon-instagram.svg" alt="jobhub" /></a>
-                        <a href="#"><img src="{{asset('')}}assets/imgs/theme/icons/icon-pinterest.svg" alt="jobhub" /></a>
-                        <a href="#"><img src="{{asset('')}}assets/imgs/theme/icons/icon-youtube.svg" alt="jobhub" /></a>
+                        <a href="#"><img src="{{ asset('') }}assets/imgs/theme/icons/icon-facebook.svg"
+                                alt="jobhub" /></a>
+                        <a href="#"><img src="{{ asset('') }}assets/imgs/theme/icons/icon-twitter.svg"
+                                alt="jobhub" /></a>
+                        <a href="#"><img src="{{ asset('') }}assets/imgs/theme/icons/icon-instagram.svg"
+                                alt="jobhub" /></a>
+                        <a href="#"><img src="{{ asset('') }}assets/imgs/theme/icons/icon-pinterest.svg"
+                                alt="jobhub" /></a>
+                        <a href="#"><img src="{{ asset('') }}assets/imgs/theme/icons/icon-youtube.svg"
+                                alt="jobhub" /></a>
                     </div>
                     <div class="site-copyright">Copyright 2022 © JobHub. <br />Designed by AliThemes.</div>
                 </div>
