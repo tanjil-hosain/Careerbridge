@@ -42,7 +42,37 @@
                         <div class="single-apply-jobs">
                             <div class="row align-items-center">
                                 <div class="col-md-5">
-                                    <a href="#" class="btn btn-default mr-15">Apply now</a>
+                                    @guest
+                                        <a href="{{ route('login') }}" class="btn btn-default ">
+                                             Apply Now
+                                        </a>
+                                    @endguest
+
+                                    @auth
+
+                                        @if (auth()->user()->role == 'job_seeker')
+                                            @if ( $alreadyApplied)
+                                                <button class="btn btn-success w-100" disabled>
+                                                    <i class="fi-rr-check me-2"></i>
+                                                    Already Applied
+                                                </button>
+                                            @else
+                                                <button class="btn btn-default w-100">
+                                                    <i class="fi-rr-paper-plane me-2"></i>
+                                                    Apply Now
+                                                </button>
+                                            @endif
+                                        @elseif(auth()->user()->role->name == 'employer')
+                                            <button class="btn btn-secondary w-100" disabled>
+                                                Employers Can't Apply
+                                            </button>
+                                        @else
+                                            <button class="btn btn-secondary w-100" disabled>
+                                                Admin Can't Apply
+                                            </button>
+                                        @endif
+
+                                    @endauth
                                     <a href="#" class="btn btn-border">Save job</a>
                                 </div>
                                 <div class="col-md-7 text-lg-end social-share">
@@ -243,22 +273,24 @@
                                             </figure>
                                         </div>
                                         <div class="card-job-top--info">
-                                            <h6 class="card-job-top--info-heading"><a href="job-single.html">{{$job->title}}</a></h6>
+                                            <h6 class="card-job-top--info-heading"><a
+                                                    href="job-single.html">{{ $job->title }}</a></h6>
                                             <div class="row">
                                                 <div class="col-lg-7">
                                                     <a href="employers-grid.html"><span
                                                             class="card-job-top--company">AliStudio, Inc</span></a>
                                                     <span class="card-job-top--location text-sm"><i
                                                             class="fi-rr-marker"></i>
-                                                        {{$job->location}}</span>
+                                                        {{ $job->location }}</span>
                                                     <span class="card-job-top--type-job text-sm"><i
                                                             class="fi-rr-briefcase"></i>
-                                                         {{$job->job_type}}</span>
+                                                        {{ $job->job_type }}</span>
                                                     <span class="card-job-top--post-time text-sm"><i
-                                                            class="fi-rr-clock"></i> Deadline: {{$job->deadline}}</span>
+                                                            class="fi-rr-clock"></i> Deadline: {{ $job->deadline }}</span>
                                                 </div>
                                                 <div class="col-lg-5 text-lg-end">
-                                                    <span class="card-job-top--price">{{$job->salary}}<span>month</span></span>
+                                                    <span
+                                                        class="card-job-top--price">{{ $job->salary }}<span>month</span></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -301,12 +333,11 @@
                         <div class="sidebar-shadow">
                             <div class="sidebar-heading">
                                 <div class="avatar-sidebar">
-                                    <figure><img alt="jobhub"
-                                            src="{{ asset('storage/'.$job->company->logo) }}" />
+                                    <figure><img alt="jobhub" src="{{ asset('storage/' . $job->company->logo) }}" />
                                     </figure>
                                     <div class="sidebar-info">
-                                        <span class="sidebar-company">{{$job->company->company_name}}</span>
-                                        <span class="sidebar-website-text">{{$job->company->website}}</span>
+                                        <span class="sidebar-company">{{ $job->company->company_name }}</span>
+                                        <span class="sidebar-website-text">{{ $job->company->website }}</span>
                                         <div class="dropdowm">
                                             <button class="btn btn-dots btn-dots-abs-right dropdown-toggle" type="button"
                                                 data-bs-toggle="dropdown" aria-expanded="false"></button>
@@ -331,35 +362,35 @@
                                         <div class="sidebar-icon-item"><i class="fi-rr-briefcase"></i></div>
                                         <div class="sidebar-text-info">
                                             <span class="text-description">Job Type</span>
-                                            <strong class="small-heading">{{$job->job_type}}</strong>
+                                            <strong class="small-heading">{{ $job->job_type }}</strong>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="sidebar-icon-item"><i class="fi-rr-marker"></i></div>
                                         <div class="sidebar-text-info">
                                             <span class="text-description">Location</span>
-                                            <strong class="small-heading">{{$job->location}}</strong>
+                                            <strong class="small-heading">{{ $job->location }}</strong>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="sidebar-icon-item"><i class="fi-rr-dollar"></i></div>
                                         <div class="sidebar-text-info">
                                             <span class="text-description">Salary</span>
-                                            <strong class="small-heading">{{$job->salary}}</strong>
+                                            <strong class="small-heading">{{ $job->salary }}</strong>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="sidebar-icon-item"><i class="fi-rr-clock"></i></div>
                                         <div class="sidebar-text-info">
                                             <span class="text-description">Date posted</span>
-                                            <strong class="small-heading">{{$job->created_at}}</strong>
+                                            <strong class="small-heading">{{ $job->created_at }}</strong>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="sidebar-icon-item"><i class="fi-rr-time-fast"></i></div>
                                         <div class="sidebar-text-info">
                                             <span class="text-description">Deadline</span>
-                                            <strong class="small-heading">{{$job->deadline}}</strong>
+                                            <strong class="small-heading">{{ $job->deadline }}</strong>
                                         </div>
                                     </li>
                                 </ul>
@@ -430,9 +461,9 @@
                             <div class="sidebar-team-member pt-40">
                                 <h6 class="small-heading">Contact Info</h6>
                                 <div class="info-address">
-                                    <span><i class="fi-rr-marker"></i> <span>{{$job->company->address}}</span></span>
-                                    <span><i class="fi-rr-headset"></i> <span>{{$job->company->phone}} </span></span>
-                                    <span><i class="fi-rr-paper-plane"></i>{{$job->company->email}} <span></span></span>
+                                    <span><i class="fi-rr-marker"></i> <span>{{ $job->company->address }}</span></span>
+                                    <span><i class="fi-rr-headset"></i> <span>{{ $job->company->phone }} </span></span>
+                                    <span><i class="fi-rr-paper-plane"></i>{{ $job->company->email }} <span></span></span>
                                     <span><i class="fi-rr-time-fast"></i> <span>10:00 - 18:00, Mon - Sat </span></span>
                                 </div>
                             </div>

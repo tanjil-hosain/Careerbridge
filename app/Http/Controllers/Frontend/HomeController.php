@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Application;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\Job;
@@ -27,6 +28,13 @@ class HomeController extends Controller
     {
         $job->load(['company', 'category']);
 
-        return view('frontend.pages.job_details', compact('job'));
+        $alreadyApplied = false;
+
+        if(auth()->check() && auth()->user()->role=='job_seeker'){
+            $alreadyApplied = Application::where('job_id', $job->id)
+            ->where('user_id', auth()->id())->exists();
+        }
+
+        return view('frontend.pages.job_details', compact('job', 'alreadyApplied'));
     }
 }
