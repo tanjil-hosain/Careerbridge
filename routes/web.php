@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BackendController\ApplicationController;
 use App\Http\Controllers\BackendController\CategoryController;
 use App\Http\Controllers\BackendController\CompanyController;
 use App\Http\Controllers\BackendController\JobController;
@@ -23,18 +24,17 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard');
 
 //Admin Route--
-Route::prefix('admin')->middleware(['auth','role:admin'])->name('admin.')->group(function(){
+Route::prefix('admin')->middleware(['auth', 'role:admin'])->name('admin.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'adminDashbaord'])->name('dashboard');
 
     //categorY route---->
-    Route::resource('/categories',CategoryController::class);
-
+    Route::resource('/categories', CategoryController::class);
 });
 
 
 //Employer Route--
-Route::prefix('employer')->middleware(['auth', 'role:employer'])->name('employer.')->group(function(){
-    Route::get('/dashboard', [DashboardController::class, 'employerDashboard' ])->name('dashboard');
+Route::prefix('employer')->middleware(['auth', 'role:employer'])->name('employer.')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'employerDashboard'])->name('dashboard');
 
     Route::resource('/company', CompanyController::class);
 
@@ -45,11 +45,16 @@ Route::prefix('employer')->middleware(['auth', 'role:employer'])->name('employer
 
 
 //Job_seekers---
-Route::prefix('job_seeker')->middleware(['auth', 'role:job_seeker'])->name('job_seeker.')->group(function(){
-    Route::get('/dashboard', [DashboardController::class, 'job_seekerdDashboard' ])->name('dashboard');
+Route::prefix('job_seeker')->middleware(['auth', 'role:job_seeker'])->name('job_seeker.')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'job_seekerdDashboard'])->name('dashboard');
 
     Route::resource('profile', JobSeekerProfileController::class);
 
+    Route::get('/applications/create/{job}', [ApplicationController::class, 'create'])
+        ->name('application.create');
+
+    Route::post('/applications', [ApplicationController::class, 'store'])
+        ->name('application.store');
 });
 
 
@@ -65,4 +70,4 @@ Route::middleware('auth')->group(function () {
 Route::get('/jobs/{job}', [HomeController::class, 'jobDetails'])
     ->name('jobs.details');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
