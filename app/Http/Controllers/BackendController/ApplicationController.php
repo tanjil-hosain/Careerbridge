@@ -4,6 +4,7 @@ namespace App\Http\Controllers\BackendController;
 
 use App\Http\Controllers\Controller;
 use App\Models\Application;
+use App\Models\Job;
 use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
@@ -19,9 +20,9 @@ class ApplicationController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Job $job)
     {
-        //
+         return view('backend.job_seeker.applications.create', compact('job'));
     }
 
     /**
