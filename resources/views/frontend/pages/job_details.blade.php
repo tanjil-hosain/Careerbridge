@@ -44,23 +44,23 @@
                                 <div class="col-md-5">
                                     @guest
                                         <a href="{{ route('login') }}" class="btn btn-default ">
-                                             Apply Now
+                                            Apply Now
                                         </a>
                                     @endguest
 
                                     @auth
 
                                         @if (auth()->user()->role == 'job_seeker')
-                                            @if ( $alreadyApplied)
+                                            @if ($alreadyApplied)
                                                 <button class="btn btn-success w-100" disabled>
                                                     <i class="fi-rr-check me-2"></i>
                                                     Already Applied
                                                 </button>
                                             @else
-                                                <button class="btn btn-default w-100">
-                                                    <i class="fi-rr-paper-plane me-2"></i>
+                                                <a href="{{ route('job_seeker.application.create', $job) }}"
+                                                    class="btn btn-default w-100">
                                                     Apply Now
-                                                </button>
+                                                </a>
                                             @endif
                                         @elseif(auth()->user()->role->name == 'employer')
                                             <button class="btn btn-secondary w-100" disabled>
