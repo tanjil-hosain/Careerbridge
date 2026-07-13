@@ -50,6 +50,10 @@ Route::prefix('job_seeker')->middleware(['auth', 'role:job_seeker'])->name('job_
 
     Route::resource('profile', JobSeekerProfileController::class);
 
+
+    Route::get('/applications', [ApplicationController::class, 'index'])
+    ->name('application.index');
+
     Route::get('/applications/create/{job}', [ApplicationController::class, 'create'])
         ->name('application.create');
 

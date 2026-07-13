@@ -1,7 +1,7 @@
-@extends('backend.job_seeker.master')
+@extends('backend.job_seeker.layouts.master')
 
 @section('content')
-
+<div class="page-content">
 <div class="container py-4">
 
     <div class="card shadow-sm">
@@ -42,9 +42,8 @@
 
                 @csrf
 
-                <input type="hidden"
-                       name="job_id"
-                       value="{{ $job->id }}">
+               <input type="hidden" name="job_id" value="{{ $job->id }}">
+              
 
                 <div class="mb-3">
                     <label class="form-label">
@@ -90,6 +89,7 @@
 
     </div>
 
+</div>
 </div>
 
 @endsection

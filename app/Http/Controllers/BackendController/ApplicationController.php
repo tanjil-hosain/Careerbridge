@@ -15,7 +15,12 @@ class ApplicationController extends Controller
      */
     public function index()
     {
-        //
+        $applications = Application::with(['job.company'])
+            ->where('user_id', auth()->id())
+            ->latest()
+            ->get();
+
+        return view('backend.job_seeker.aplications.index', compact('applications'));
     }
 
     /**
@@ -23,7 +28,7 @@ class ApplicationController extends Controller
      */
     public function create(Job $job)
     {
-         return view('backend.job_seeker.aplications.create', compact('job'));
+        return view('backend.job_seeker.aplications.create', compact('job'));
     }
 
     /**
@@ -31,40 +36,46 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
-        'job_id' => 'required|exists:jobs,id',
-        'resume' => 'required|mimes:pdf|max:2048',
-        'cover_letter' => 'nullable|string|max:5000',
-    ]);
+      
+        $request->validate([
+            'job_id' => 'required|exists:job_posts,id',
+            'resume' => 'required|mimes:pdf|max:2048',
+            'cover_letter' => 'nullable|string',
+        ]);
 
-    // Already Applied Check
-    $exists = Application::where('job_id', $request->job_id)
-        ->where('user_id', Auth::id())
-        ->exists();
+        // Already Applied Check
+        $exists = Application::where('job_id', $request->job_id)
+            ->where('user_id', Auth::id())
+            ->exists();
 
-    if ($exists) {
-        return back()->with('error', 'You have already applied for this job.');
-    }
+        if ($exists) {
+            return back()->with('error', 'You have already applied for this job.');
+        }
 
-    // Resume Upload
-    $resumePath = null;
+        // Resume Upload
+        $resume = null;
 
-    if ($request->hasFile('resume')) {
-        $resumePath = $request->file('resume')->store('resumes', 'public');
-    }
+        if ($request->hasFile('resume')) {
+            $resume = $request->file('resume')->store('resumes', 'public');
+        }
 
-    // Save Application
-    Application::create([
-        'job_id'       => $request->job_id,
-        'user_id'      => Auth::id(),
-        'resume'       => $resumePath,
-        'cover_letter' => $request->cover_letter,
-        'status'       => 'pending',
-    ]);
+        $application = new Application();
 
-    return redirect()
-        ->route('job_seeker.application.index')
-        ->with('success', 'Application submitted successfully.');
+        $application->job_id = $request->job_id;
+
+        $application->user_id = Auth::id();
+
+        $application->resume = $resume;
+
+        $application->cover_letter = $request->cover_letter;
+
+        $application->status = 'pending';
+
+        $application->save();
+
+        return redirect()
+            ->route('job_seeker.application.index')
+            ->with('success', 'Application submitted successfully.');
     }
 
     /**

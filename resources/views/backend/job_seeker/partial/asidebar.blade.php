@@ -52,7 +52,7 @@
                         <div class="menu-title">Applications</div>
                     </a>
                     <ul>
-                        <li> <a href="app-chat-box.html"><i class="bi bi-arrow-right-short"></i>My Application</a>
+                        <li> <a href="{{route('job_seeker.application.index')}}"><i class="bi bi-arrow-right-short"></i>My Application</a>
                         </li>
                          <li> <a href="app-chat-box.html"><i class="bi bi-arrow-right-short"></i> Application Status</a>
                         </li>
