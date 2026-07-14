@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\BackendController;
 
 use App\Http\Controllers\Controller;
+use App\Models\Application;
 use App\Models\Category;
 use App\Models\Job;
 use Illuminate\Http\Request;
@@ -196,6 +197,20 @@ class JobController extends Controller
         return view(
             'backend.employer.jobs.applications',
             compact('job', 'applications')
+        );
+    }
+
+
+    public function showApplication(Application $application)
+    {
+        // Security
+        if ($application->job->company_id != auth()->user()->company->id) {
+            abort(403);
+        }
+
+        return view(
+            'backend.employer.jobs.application_show',
+            compact('application')
         );
     }
 }

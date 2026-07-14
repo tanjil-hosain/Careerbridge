@@ -78,35 +78,21 @@ class ApplicationController extends Controller
             ->with('success', 'Application submitted successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Application $application)
+        public function applications(Job $job)
     {
-        //
-    }
+        // Security
+        if ($job->company_id != auth()->user()->company->id) {
+            abort(403);
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Application $application)
-    {
-        //
-    }
+        $applications = $job->applications()
+            ->with('user.jobSeekerProfile')
+            ->latest()
+            ->get();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Application $application)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Application $application)
-    {
-        //
+        return view(
+            'backend.employer.jobs.applications',
+            compact('job', 'applications')
+        );
     }
 }
