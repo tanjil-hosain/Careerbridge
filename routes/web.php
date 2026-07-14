@@ -41,7 +41,13 @@ Route::prefix('employer')->middleware(['auth', 'role:employer'])->name('employer
     //Job Route--
     Route::resource('/jobs', JobController::class);
     Route::get('/jobs/{job}/applications', [JobController::class, 'applications'])
-    ->name('jobs.applications');
+        ->name('jobs.applications');
+
+    Route::get('/applications/{application}', [JobController::class, 'showApplication'])
+        ->name('applications.show');
+
+    Route::put('/applications/{application}', [JobController::class, 'updateApplication'])
+        ->name('applications.update');
 });
 
 
@@ -54,7 +60,7 @@ Route::prefix('job_seeker')->middleware(['auth', 'role:job_seeker'])->name('job_
 
 
     Route::get('/applications', [ApplicationController::class, 'index'])
-    ->name('application.index');
+        ->name('application.index');
 
     Route::get('/applications/create/{job}', [ApplicationController::class, 'create'])
         ->name('application.create');
