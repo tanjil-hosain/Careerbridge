@@ -72,6 +72,10 @@
                                     </td>
 
                                     <td class="text-end">
+                                        <a href="{{ route('employer.jobs.applications', $job) }}"
+                                            class="btn btn-sm btn-outline-primary">
+                                            Applicants ({{ $job->applications->count() }})
+                                        </a>
                                         <a href="{{ route('employer.jobs.edit', $job->id) }}"
                                             class="btn btn-sm btn-outline-primary">
                                             Edit
