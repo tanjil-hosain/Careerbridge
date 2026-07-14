@@ -52,7 +52,7 @@
 
                                         @if (auth()->user()->role == 'job_seeker')
                                             @if ($alreadyApplied)
-                                                <button class="btn btn-success w-100" disabled>
+                                                <button class="btn btn-success" disabled>
                                                     <i class="fi-rr-check me-2"></i>
                                                     Already Applied
                                                 </button>

@@ -180,4 +180,22 @@ class JobController extends Controller
             ->route('employer.jobs.index')
             ->with('success', 'Job deleted successfully.');
     }
+
+    public function applications(Job $job)
+    {
+        // Security
+        if ($job->company_id != auth()->user()->company->id) {
+            abort(403);
+        }
+
+        $applications = $job->applications()
+            ->with('user.jobSeekerProfile')
+            ->latest()
+            ->get();
+
+        return view(
+            'backend.employer.jobs.applications',
+            compact('job', 'applications')
+        );
+    }
 }

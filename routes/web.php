@@ -40,6 +40,8 @@ Route::prefix('employer')->middleware(['auth', 'role:employer'])->name('employer
 
     //Job Route--
     Route::resource('/jobs', JobController::class);
+    Route::get('/jobs/{job}/applications', [JobController::class, 'applications'])
+    ->name('jobs.applications');
 });
 
 
