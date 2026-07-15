@@ -6,6 +6,7 @@ use App\Http\Controllers\BackendController\CompanyController;
 use App\Http\Controllers\BackendController\JobController;
 use App\Http\Controllers\BackendController\JobSeekerProfileController;
 use App\Http\Controllers\BackendController\PlanController;
+use App\Http\Controllers\BackendController\SubscriptionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -30,7 +31,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->name('admin.')->grou
 
     //categorY route---->
     Route::resource('/categories', CategoryController::class);
-    
+
     Route::resource('plans', PlanController::class);
 });
 
@@ -51,6 +52,9 @@ Route::prefix('employer')->middleware(['auth', 'role:employer'])->name('employer
 
     Route::put('/applications/{application}', [JobController::class, 'updateApplication'])
         ->name('applications.update');
+
+    Route::get('/subscription/plans', [SubscriptionController::class, 'employerPlans'])
+        ->name('subscription.plans');
 });
 
 
@@ -70,6 +74,9 @@ Route::prefix('job_seeker')->middleware(['auth', 'role:job_seeker'])->name('job_
 
     Route::post('/applications', [ApplicationController::class, 'store'])
         ->name('application.store');
+
+    Route::get('/subscription/plans', [SubscriptionController::class, 'jobSeekerPlans'])
+        ->name('subscription.plans');
 });
 
 

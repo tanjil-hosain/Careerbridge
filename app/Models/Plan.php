@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Plan extends Model
 {
-    
+
     protected $fillable = [
 
         'name',
@@ -18,4 +18,9 @@ class Plan extends Model
         'description'
 
     ];
+
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
 }
