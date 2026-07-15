@@ -83,6 +83,11 @@ class PlanController extends Controller
      */
     public function destroy(Plan $plan)
     {
-        //
+       $plan->delete();
+        return redirect()
+            ->route('admin.plans.index')
+            ->with('success', 'Subscription Plan Created Successfully.');
+
+        
     }
 }
