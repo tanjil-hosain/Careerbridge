@@ -7,6 +7,7 @@ use App\Http\Controllers\BackendController\JobController;
 use App\Http\Controllers\BackendController\JobSeekerProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->name('admin.')->grou
 
     //categorY route---->
     Route::resource('/categories', CategoryController::class);
+    Route::resource('plans', PlanController::class);
 });
 
 

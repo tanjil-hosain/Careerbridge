@@ -85,6 +85,13 @@
                 </li>
                 <li>
                     <a href="javascript:;">
+                        <div class="parent-icon"><i class="bi bi-arrow-right-short"></i>
+                        </div>
+                        <div class="menu-title">Plans</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
                         <div class="parent-icon"><i class="bi bi-headset"></i>
                         </div>
                         <div class="menu-title">Support</div>

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\BackendController;
 
+use App\Http\Controllers\Controller;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class PlanController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.admin.plans.create');
     }
 
     /**
