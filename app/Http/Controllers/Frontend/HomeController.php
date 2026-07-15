@@ -26,6 +26,7 @@ class HomeController extends Controller
 
     public function jobDetails(Job $job)
     {
+       
         $job->load(['company', 'category']);
 
         $alreadyApplied = false;

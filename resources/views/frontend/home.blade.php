@@ -137,9 +137,10 @@
                                         </figure>
                                     </a>
                                 </div>
-                                <h5 class="text-center mt-20 card-heading"><a href="">{{$category->name}}</a>
+                                <h5 class="text-center mt-20 card-heading"><a href="">{{ $category->name }}</a>
                                 </h5>
-                                <p class="text-center text-stroke-40 mt-20"> {{ $category->job->count() }} Available Vacancy</p>
+                                <p class="text-center text-stroke-40 mt-20"> {{ $category->job->count() }} Available
+                                    Vacancy</p>
                             </div>
                         </div>
                     @endforeach
@@ -189,54 +190,57 @@
                             aria-labelledby="tab-one-1">
                             <div class="row">
                                 @foreach ($jobs as $job)
-                                                                <div class="col-lg-4 col-md-6">
-                                    <div class="card-grid-2 hover-up">
-                                        <div class="text-center card-grid-2-image">
-                                            <a href="{{route('jobs.details', $job)}}">
-                                                <figure><img src="{{ asset('storage/'.$job->company->logo) }}"
-                                                        alt="jobhub" /></figure>
-                                            </a>
-                                            <label class="btn-urgent">💼 Hiring</label>
-                                        </div>
-                                        <div class="card-block-info">
-                                            <div class="row">
-                                                <div class="col-lg-7 col-6">
-                                                    <a href="" class="card-2-img-text">
-                                                        <span class="card-grid-2-img-small"><img
-                                                                src="{{ asset('storage/'.$job->company->logo) }}"
-                                                                alt="jobhub" /></span> <span>{{$job->company->company_name}}</span>
-                                                    </a>
-                                                </div>
-                                                <div class="col-lg-5 col-6 text-end">
-                                                    <a href="#" class="btn btn-grey-small disc-btn">{{$job->job_type}}</a>
-                                                </div>
+                                    <div class="col-lg-4 col-md-6">
+                                        <div class="card-grid-2 hover-up">
+                                            <div class="text-center card-grid-2-image">
+                                                <a href="{{ route('jobs.details', $job) }}">
+                                                    <figure><img src="{{ asset('storage/' . $job->company->logo) }}"
+                                                            alt="jobhub" /></figure>
+                                                </a>
+                                                <label class="btn-urgent">💼 Hiring</label>
                                             </div>
-                                            <h5 class="mt-20"><a href="job-single.html">{{$job->title}}</a></h5>
-                                            <div class="mt-15">
-                                                <span class="card-time">3 mins ago</span>
-                                                <span class="card-location">{{$job->location}}</span>
-                                            </div>
-                                            <div class="card-2-bottom mt-30">
+                                            <div class="card-block-info">
                                                 <div class="row">
-                                                    <div class="col-lg-7 col-8">
-                                                        <span class="card-text-price">{{$job->salary}}<span>/Month</span> </span>
+                                                    <div class="col-lg-7 col-6">
+                                                        <a href="" class="card-2-img-text">
+                                                            <span class="card-grid-2-img-small"><img
+                                                                    src="{{ asset('storage/' . $job->company->logo) }}"
+                                                                    alt="jobhub" /></span>
+                                                            <span>{{ $job->company->company_name }}</span>
+                                                        </a>
                                                     </div>
-                                                    <div class="col-lg-5 col-4 text-end">
-                                                        <span><img
-                                                                src="{{ asset('') }}frontend_assets/imgs/theme/icons/shield-check.svg"
-                                                                alt="jobhub" /></span>
-                                                        <span class="ml-5"><img
-                                                                src="{{ asset('') }}frontend_assets/imgs/theme/icons/bookmark.svg"
-                                                                alt="jobhub" /></span>
+                                                    <div class="col-lg-5 col-6 text-end">
+                                                        <a href="#"
+                                                            class="btn btn-grey-small disc-btn">{{ $job->job_type }}</a>
+                                                    </div>
+                                                </div>
+                                                <h5 class="mt-20"><a href="job-single.html">{{ $job->title }}</a></h5>
+                                                <div class="mt-15">
+                                                    <span class="card-time">3 mins ago</span>
+                                                    <span class="card-location">{{ $job->location }}</span>
+                                                </div>
+                                                <div class="card-2-bottom mt-30">
+                                                    <div class="row">
+                                                        <div class="col-lg-7 col-8">
+                                                            <span
+                                                                class="card-text-price">{{ $job->salary }}<span>/Month</span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="col-lg-5 col-4 text-end">
+                                                            <span><img
+                                                                    src="{{ asset('') }}frontend_assets/imgs/theme/icons/shield-check.svg"
+                                                                    alt="jobhub" /></span>
+                                                            <span class="ml-5"><img
+                                                                    src="{{ asset('') }}frontend_assets/imgs/theme/icons/bookmark.svg"
+                                                                    alt="jobhub" /></span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                    
                                 @endforeach
-    
+
                             </div>
                         </div>
 

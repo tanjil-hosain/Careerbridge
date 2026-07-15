@@ -1,4 +1,4 @@
-@extends('frontend.pages.job_details')
+@extends('frontend.layouts.master')
 
 @section('content')
     <main class="main">
