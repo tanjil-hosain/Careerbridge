@@ -19,5 +19,13 @@ class SubscriptionController extends Controller
         return view('backend.employer.subscription.index', compact('plans'));
     }
 
+    public function jobSeekerPlans()
+    {
+        $plans = Plan::where('type', 'job_seeker')
+            ->where('status', 1)
+            ->orderBy('price')
+            ->get();
 
+        return view('backend.job_seeker.subscription.index', compact('plans'));
+    }
 }
