@@ -84,7 +84,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript:;">
+                    <a href="{{route('admin.plans.index')}}">
                         <div class="parent-icon"><i class="bi bi-arrow-right-short"></i>
                         </div>
                         <div class="menu-title">Plans</div>

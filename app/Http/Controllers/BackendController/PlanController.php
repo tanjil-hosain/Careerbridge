@@ -13,7 +13,9 @@ class PlanController extends Controller
      */
     public function index()
     {
-        //
+        $plans = Plan::latest()->paginate(10);
+
+        return view('backend.admin.plans.index', compact('plans'));
     }
 
     /**
@@ -29,7 +31,27 @@ class PlanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'        => 'required|string|max:255|unique:plans,name',
+            'price'       => 'required|numeric|min:0',
+            'job_limit'   => 'required|integer|min:1',
+            'duration'    => 'required|integer|min:1',
+            'description' => 'nullable|string',
+            'status'      => 'required|boolean',
+        ]);
+
+        $plan = new Plan();
+        $plan->name        = $request->name;
+        $plan->price       = $request->price;
+        $plan->job_limit   = $request->job_limit;
+        $plan->duration    = $request->duration;
+        $plan->description = $request->description;
+        $plan->status     = $request->status;
+
+        $plan->save();
+        return redirect()
+            ->route('admin.plans.index')
+            ->with('success', 'Subscription Plan Created Successfully.');
     }
 
     /**

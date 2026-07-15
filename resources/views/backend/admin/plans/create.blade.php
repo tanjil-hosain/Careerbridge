@@ -14,7 +14,7 @@
 
                     <h4 class="mb-0">Create Subscription Plan</h4>
 
-                    <a href="{{ route('plans.index') }}" class="btn btn-secondary btn-sm">
+                    <a href="{{ route('admin.plans.index') }}" class="btn btn-secondary btn-sm">
                         Back
                     </a>
 
@@ -22,7 +22,7 @@
 
                 <div class="card-body">
 
-                    <form action="{{ route('plans.store') }}" method="POST">
+                    <form action="{{ route('admin.plans.store') }}" method="POST">
 
                         @csrf
 
