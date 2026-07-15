@@ -46,7 +46,7 @@
                         <div class="menu-title">Application</div>
                     </a>
                     <ul>
-                        <li> <a href="app-chat-box.html"><i class="bi bi-arrow-right-short"></i>Job Application</a>
+                        <li> <a href=""><i class="bi bi-arrow-right-short"></i>Job Application</a>
                         </li>
                         
                     </ul>

@@ -56,12 +56,6 @@
                                     <td>
                                         {{ $application->created_at->format('d M, Y') }}
                                     </td>
-                                    <td>
-                                        <a href="{{ route('employer.applications.show', $application) }}"
-                                            class="btn btn-primary btn-sm">
-                                            View
-                                        </a>
-                                    </td>
 
                                 </tr>
 

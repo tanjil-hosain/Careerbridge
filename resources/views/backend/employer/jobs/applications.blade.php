@@ -69,10 +69,9 @@
 
                                 <td>
 
-                                    <a href="#" class="btn btn-primary btn-sm">
-
+                                    <a href="{{ route('employer.applications.show', $application) }}"
+                                        class="btn btn-primary btn-sm">
                                         View
-
                                     </a>
 
                                 </td>
