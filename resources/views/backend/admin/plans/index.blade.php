@@ -47,10 +47,11 @@
                                     <th>#</th>
 
                                     <th>Plan Name</th>
+                                    <th>Type</th>
 
                                     <th>Price</th>
 
-                                    <th>Job Limit</th>
+                                    <th> Limit</th>
 
                                     <th>Duration</th>
 
@@ -78,6 +79,23 @@
                                                 {{ $plan->name }}
 
                                             </strong>
+
+                                        </td>
+                                        <td>
+
+                                            @if ($plan->type == 'employer')
+                                                <span class="badge bg-primary">
+
+                                                    Employer
+
+                                                </span>
+                                            @else
+                                                <span class="badge bg-info">
+
+                                                    Job Seeker
+
+                                                </span>
+                                            @endif
 
                                         </td>
 
@@ -118,13 +136,13 @@
                                         </td>
 
                                         <td class="text-end">
-                                            <a href="{{ route('admin.plans.edit', $plan->id ) }}"
+                                            <a href="{{ route('admin.plans.edit', $plan->id) }}"
                                                 class="btn btn-sm btn-outline-primary" title="Edit">
                                                 Edit
                                             </a>
 
-                                            <form action="{{ route('admin.plans.destroy', $plan->id) }}"
-                                                method="POST" class="d-inline">
+                                            <form action="{{ route('admin.plans.destroy', $plan->id) }}" method="POST"
+                                                class="d-inline">
                                                 @csrf
                                                 @method('Delete')
 

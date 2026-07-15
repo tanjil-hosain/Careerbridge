@@ -33,6 +33,7 @@ class PlanController extends Controller
     {
         $request->validate([
             'name'        => 'required|string|max:255|unique:plans,name',
+            'type' => 'required|in:employer,job_seeker',
             'price'       => 'required|numeric|min:0',
             'job_limit'   => 'required|integer|min:1',
             'duration'    => 'required|integer|min:1',
@@ -43,7 +44,7 @@ class PlanController extends Controller
         $plan = new Plan();
         $plan->name        = $request->name;
         $plan->price       = $request->price;
-        $plan->job_limit   = $request->job_limit;
+        $plan->limit   = $request->job_limit;
         $plan->duration    = $request->duration;
         $plan->description = $request->description;
         $plan->status     = $request->status;
@@ -77,6 +78,7 @@ class PlanController extends Controller
     {
         $request->validate([
             'name'        => 'required|string|max:255|unique:plans,name',
+            'type' => 'required|in:employer,job_seeker',
             'price'       => 'required|numeric|min:0',
             'job_limit'   => 'required|integer|min:1',
             'duration'    => 'required|integer|min:1',
@@ -86,7 +88,7 @@ class PlanController extends Controller
 
         $plan->name        = $request->name;
         $plan->price       = $request->price;
-        $plan->job_limit   = $request->job_limit;
+        $plan->limit   = $request->job_limit;
         $plan->duration    = $request->duration;
         $plan->description = $request->description;
         $plan->status     = $request->status;
@@ -102,11 +104,9 @@ class PlanController extends Controller
      */
     public function destroy(Plan $plan)
     {
-       $plan->delete();
+        $plan->delete();
         return redirect()
             ->route('admin.plans.index')
             ->with('success', 'Subscription Plan Deleted Successfully.');
-
-        
     }
 }

@@ -10,8 +10,9 @@ class Plan extends Model
     protected $fillable = [
 
         'name',
+        'type',
         'price',
-        'job_limit',
+        'limit',
         'duration',
         'status',
         'description'

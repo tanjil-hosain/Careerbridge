@@ -14,8 +14,13 @@ return new class extends Migration
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+
+            $table->enum('type', [
+                'employer',
+                'job_seeker'
+            ]);
             $table->decimal('price', 10, 2);
-            $table->integer('job_limit');
+            $table->integer('limit');
             $table->integer('duration');
             $table->boolean('status')->default(true);
             $table->text('description')->nullable();

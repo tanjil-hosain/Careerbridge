@@ -39,6 +39,22 @@
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                    <div class="col-md-6 mb-3">
+
+                                        <label class="form-label">Plan Type</label>
+
+                                        <select name="type" class="form-select">
+                                            <option value="employer" {{ $plan->type == 'employer' ? 'selected' : '' }}>
+                                                Employer
+                                            </option>
+
+                                            <option value="job_seeker" {{ $plan->type == 'job_seeker' ? 'selected' : '' }}>
+                                                Job Seeker
+                                            </option>
+
+                                        </select>
+
+                                    </div>
 
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Price (BDT)</label>
@@ -67,7 +83,8 @@
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Duration (Days)</label>
 
-                                        <input type="number" name="duration" value="{{ old('duration', $plan->duration) }}"
+                                        <input type="number" name="duration"
+                                            value="{{ old('duration', $plan->duration) }}"
                                             class="form-control @error('duration') is-invalid @enderror">
 
                                         @error('duration')
