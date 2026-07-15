@@ -28,4 +28,19 @@ class SubscriptionController extends Controller
 
         return view('backend.job_seeker.subscription.index', compact('plans'));
     }
+
+    public function checkout(Plan $plan)
+    {
+        // Employer only employer plan
+        if (auth()->user()->role == 'employer' && $plan->type != 'employer') {
+            abort(403);
+        }
+
+        // Job Seeker only job seeker plan
+        if (auth()->user()->role == 'job_seeker' && $plan->type != 'job_seeker') {
+            abort(403);
+        }
+
+        return view('subscription.checkout', compact('plan'));
+    }
 }
