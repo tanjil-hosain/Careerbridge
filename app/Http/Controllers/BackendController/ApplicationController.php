@@ -5,6 +5,7 @@ namespace App\Http\Controllers\BackendController;
 use App\Http\Controllers\Controller;
 use App\Models\Application;
 use App\Models\Job;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,12 +37,25 @@ class ApplicationController extends Controller
      */
     public function store(Request $request)
     {
-      
+
         $request->validate([
             'job_id' => 'required|exists:job_posts,id',
             'resume' => 'required|mimes:pdf|max:2048',
             'cover_letter' => 'nullable|string',
         ]);
+
+        $subscription = Subscription::where('user_id', auth()->id())
+            ->where('status', 'active')
+            ->whereDate('end_date', '>=', now())
+            ->first();
+
+        if (!$subscription) {
+            return back()->with('error', 'Please purchase a subscription plan.');
+        }
+
+        if ($subscription->remaining_limit <= 0) {
+            return back()->with('error', 'Your application limit has been reached.');
+        }
 
         // Already Applied Check
         $exists = Application::where('job_id', $request->job_id)
@@ -72,6 +86,7 @@ class ApplicationController extends Controller
         $application->status = 'pending';
 
         $application->save();
+        $subscription->decrement('remaining_limit');
 
         return redirect()
             ->route('job_seeker.application.index')

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Application;
 use App\Models\Category;
 use App\Models\Job;
+use App\Models\Subscription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -64,6 +65,20 @@ class JobController extends Controller
             'status' => 'required',
         ]);
 
+
+        $subscription = Subscription::where('user_id', auth()->id())
+            ->where('status', 'active')
+            ->whereDate('end_date', '>=', now())
+            ->first();
+
+        if (!$subscription) {
+            return back()->with('error', 'Please purchase a subscription plan.');
+        }
+
+        if ($subscription->remaining_limit <= 0) {
+            return back()->with('error', 'Your job posting limit has been reached.');
+        }
+
         $company = auth()->user()->company;
 
         if (!$company) {
@@ -88,6 +103,7 @@ class JobController extends Controller
         $job->status = $request->status;
 
         $job->save();
+        $subscription->decrement('remaining_limit');
 
         return redirect()
             ->route('employer.jobs.index')
