@@ -12,7 +12,7 @@
             <!--navigation-->
             <ul class="metismenu" id="menu">
                 <li>
-                    <a href="javascript:;">
+                    <a href="{{route('admin.dashboard')}}">
                         <div class="parent-icon"><i class="bi bi-file-earmark-code"></i>
                         </div>
                         <div class="menu-title">Dashboard</div>
