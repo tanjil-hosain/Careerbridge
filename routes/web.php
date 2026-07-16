@@ -61,6 +61,9 @@ Route::prefix('employer')->middleware(['auth', 'role:employer'])->name('employer
 
     Route::post('/subscription/pay', [SubscriptionController::class, 'pay'])
         ->name('subscription.pay');
+
+    Route::get('/my-subscription', [SubscriptionController::class, 'mySubscription'])
+        ->name('subscription.my');
 });
 
 
@@ -89,6 +92,9 @@ Route::prefix('job_seeker')->middleware(['auth', 'role:job_seeker'])->name('job_
 
     Route::post('/subscription/pay', [SubscriptionController::class, 'pay'])
         ->name('subscription.pay');
+
+    Route::get('/my-subscription', [SubscriptionController::class, 'mySubscription'])
+        ->name('subscription.my');
 });
 
 

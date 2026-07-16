@@ -49,11 +49,17 @@
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon"><i class="bi bi-grid"></i>
                         </div>
-                        <div class="menu-title">Subcription Plan</div>
+                        <div class="menu-title">Subcription</div>
                     </a>
                     <ul>
                         <li> <a href="{{ route('job_seeker.subscription.plans') }}"><i
-                                    class="bi bi-arrow-right-short"></i>My Subscription</a>
+                                    class="bi bi-arrow-right-short"></i> Subscription Plan </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('job_seeker.subscription.my') }}">
+                                <i class="bi bi-arrow-right-short"></i>
+                                My Subscription
+                            </a>
                         </li>
 
                     </ul>

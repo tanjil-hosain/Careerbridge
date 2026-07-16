@@ -12,14 +12,14 @@
             <!--navigation-->
             <ul class="metismenu" id="menu">
                 <li>
-                    <a href="{{route('employer.dashboard')}}">
+                    <a href="{{ route('employer.dashboard') }}">
                         <div class="parent-icon"><i class="bi bi-file-earmark-code"></i>
                         </div>
                         <div class="menu-title">Dashboard</div>
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('employer.company.index')}}">
+                    <a href="{{ route('employer.company.index') }}">
                         <div class="parent-icon"><i class="bi bi-file-earmark-code"></i>
                         </div>
                         <div class="menu-title">Company Profile</div>
@@ -32,9 +32,11 @@
                         <div class="menu-title">Job Management</div>
                     </a>
                     <ul>
-                        <li> <a href="{{route('employer.jobs.index')}}"><i class="bi bi-arrow-right-short"></i>All Jobs</a>
+                        <li> <a href="{{ route('employer.jobs.index') }}"><i class="bi bi-arrow-right-short"></i>All
+                                Jobs</a>
                         </li>
-                        <li> <a href="{{route('employer.jobs.create')}}"><i class="bi bi-arrow-right-short"></i>Post New Jobs</a>
+                        <li> <a href="{{ route('employer.jobs.create') }}"><i class="bi bi-arrow-right-short"></i>Post
+                                New Jobs</a>
                         </li>
                     </ul>
                 </li>
@@ -43,12 +45,19 @@
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon"><i class="bi bi-grid"></i>
                         </div>
-                        <div class="menu-title">Subcription Plan</div>
+                        <div class="menu-title">Subcription </div>
                     </a>
                     <ul>
-                        <li> <a href="{{route('employer.subscription.plans')}}"><i class="bi bi-arrow-right-short"></i>My Subscription</a>
+                        <li> <a href="{{ route('employer.subscription.plans') }}"><i
+                                    class="bi bi-arrow-right-short"></i>Subscription Plan</a>
                         </li>
-                        
+                        <li>
+                            <a href="{{ route('employer.subscription.my') }}">
+                                <i class="bi bi-arrow-right-short"></i>
+                                My Subscription
+                            </a>
+                        </li>
+
                     </ul>
                 </li>
                 <li>

@@ -1,7 +1,7 @@
 @extends('backend.employer.layouts.master')
 
 @section('content')
-<main class="main">
+<main  class="page-content">
     <div class="container py-5">
 
         <div class="row justify-content-center">

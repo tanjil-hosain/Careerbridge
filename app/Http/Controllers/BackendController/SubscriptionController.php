@@ -101,4 +101,17 @@ class SubscriptionController extends Controller
             ->route('job_seeker.subscription.plans')
             ->with('success', 'Subscription activated successfully.');
     }
+    public function mySubscription()
+    {
+        $subscription = Subscription::with('plan')
+            ->where('user_id', auth()->id())
+            ->latest()
+            ->first();
+
+        if (auth()->user()->role == 'employer') {
+            return view('backend.employer.subscription.my_subscription', compact('subscription'));
+        }
+
+        return view('backend.job_seeker.subscription.my_subscription', compact('subscription'));
+    }
 }
