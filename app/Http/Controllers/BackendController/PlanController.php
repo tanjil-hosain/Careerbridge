@@ -32,7 +32,7 @@ class PlanController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'        => 'required|string|max:255|unique:plans,name',
+            'name'        => 'required|string|max:255',
             'type' => 'required|in:employer,job_seeker',
             'price'       => 'required|numeric|min:0',
             'job_limit'   => 'required|integer|min:1',
@@ -43,6 +43,7 @@ class PlanController extends Controller
 
         $plan = new Plan();
         $plan->name        = $request->name;
+        $plan->type       = $request->type;
         $plan->price       = $request->price;
         $plan->limit   = $request->job_limit;
         $plan->duration    = $request->duration;
@@ -77,7 +78,7 @@ class PlanController extends Controller
     public function update(Request $request, Plan $plan)
     {
         $request->validate([
-            'name'        => 'required|string|max:255|unique:plans,name',
+            'name'        => 'required|string|max:255',
             'type' => 'required|in:employer,job_seeker',
             'price'       => 'required|numeric|min:0',
             'job_limit'   => 'required|integer|min:1',
@@ -87,6 +88,7 @@ class PlanController extends Controller
         ]);
 
         $plan->name        = $request->name;
+        $plan->type       = $request->type;
         $plan->price       = $request->price;
         $plan->limit   = $request->job_limit;
         $plan->duration    = $request->duration;

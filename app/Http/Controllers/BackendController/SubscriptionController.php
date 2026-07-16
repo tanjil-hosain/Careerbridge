@@ -31,16 +31,26 @@ class SubscriptionController extends Controller
 
     public function checkout(Plan $plan)
     {
-        // Employer only employer plan
+        // Inactive plan access block
+        if (!$plan->status) {
+            abort(404);
+        }
+
+        // Employer can only buy employer plans
         if (auth()->user()->role == 'employer' && $plan->type != 'employer') {
             abort(403);
         }
 
-        // Job Seeker only job seeker plan
+        // Job seeker can only buy job seeker plans
         if (auth()->user()->role == 'job_seeker' && $plan->type != 'job_seeker') {
             abort(403);
         }
 
-        return view('subscription.checkout', compact('plan'));
+        // Load different checkout page based on role
+        if (auth()->user()->role == 'employer') {
+            return view('backend.employer.subscription.checkout', compact('plan'));
+        }
+
+        return view('backend.job_seeker.subscription.checkout', compact('plan'));
     }
 }

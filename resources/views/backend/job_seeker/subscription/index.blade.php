@@ -88,7 +88,7 @@
 
                             <div class="card-footer bg-white border-0">
 
-                                <a href="{{ route('subscription.checkout', $plan->id) }}" class="btn btn-primary w-100">
+                                <a href="{{ route('job_seeker.subscription.checkout', $plan) }}" class="btn btn-primary w-100">
                                     Choose Plan
                                 </a>
 
