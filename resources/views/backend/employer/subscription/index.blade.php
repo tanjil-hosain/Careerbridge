@@ -22,6 +22,25 @@
                 </div>
 
             </div>
+            <div>
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+
+                        <button type="button" class="btn-close" data-bs-dismiss="alert">
+                        </button>
+                    </div>
+                @endif
+
+                @if (session('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+
+                        <button type="button" class="btn-close" data-bs-dismiss="alert">
+                        </button>
+                    </div>
+                @endif
+            </div>
 
             <div class="row">
 
@@ -88,7 +107,8 @@
 
                             <div class="card-footer bg-white border-0">
 
-                                <a href="{{ route('employer.subscription.checkout', $plan) }}" class="btn btn-primary w-100">
+                                <a href="{{ route('employer.subscription.checkout', $plan) }}"
+                                    class="btn btn-primary w-100">
                                     Choose Plan
                                 </a>
 

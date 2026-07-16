@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('plan_id')->constrained()->cascadeOnDelete();
             $table->integer('amount');
-            $table->integer('remaining_jobs');
+            $table->integer('remaining_limit');
             $table->date('start_date');
             $table->date('end_date');
             $table->enum('payment_status', [

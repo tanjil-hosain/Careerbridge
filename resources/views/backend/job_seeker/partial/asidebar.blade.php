@@ -12,7 +12,7 @@
             <!--navigation-->
             <ul class="metismenu" id="menu">
                 <li>
-                    <a href=" {{route('job_seeker.dashboard')}}">
+                    <a href=" {{ route('job_seeker.dashboard') }}">
                         <div class="parent-icon"><i class="bi bi-file-earmark-code"></i>
                         </div>
                         <div class="menu-title">Dashboard</div>
@@ -24,8 +24,9 @@
                         </div>
                         <div class="menu-title">My Profile</div>
                     </a>
-                      <ul>
-                        <li> <a href="{{route('job_seeker.profile.index')}}"><i class="bi bi-arrow-right-short"></i> Profile Overview</a>
+                    <ul>
+                        <li> <a href="{{ route('job_seeker.profile.index') }}"><i class="bi bi-arrow-right-short"></i>
+                                Profile Overview</a>
                         </li>
                         <li> <a href=""><i class="bi bi-arrow-right-short"></i>Edit Profile</a>
                         </li>
@@ -44,6 +45,19 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon"><i class="bi bi-grid"></i>
+                        </div>
+                        <div class="menu-title">Subcription Plan</div>
+                    </a>
+                    <ul>
+                        <li> <a href="{{ route('job_seeker.subscription.plans') }}"><i
+                                    class="bi bi-arrow-right-short"></i>My Subscription</a>
+                        </li>
+
+                    </ul>
+                </li>
 
                 <li>
                     <a href="javascript:;" class="has-arrow">
@@ -52,13 +66,15 @@
                         <div class="menu-title">Applications</div>
                     </a>
                     <ul>
-                        <li> <a href="{{route('job_seeker.application.index')}}"><i class="bi bi-arrow-right-short"></i>My Application</a>
+                        <li> <a href="{{ route('job_seeker.application.index') }}"><i
+                                    class="bi bi-arrow-right-short"></i>My Application</a>
                         </li>
-                         <li> <a href="app-chat-box.html"><i class="bi bi-arrow-right-short"></i> Application Status</a>
+                        <li> <a href="app-chat-box.html"><i class="bi bi-arrow-right-short"></i> Application Status</a>
                         </li>
-                        
+
                     </ul>
                 </li>
+
                 <li>
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon"><i class="bi bi-grid"></i>

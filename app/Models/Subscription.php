@@ -10,7 +10,7 @@ class Subscription extends Model
         'user_id',
         'plan_id',
         'amount',
-        'remaining_jobs',
+        'remaining_limit',
         'start_date',
         'end_date',
         'payment_status',

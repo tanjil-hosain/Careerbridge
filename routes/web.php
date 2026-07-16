@@ -58,6 +58,9 @@ Route::prefix('employer')->middleware(['auth', 'role:employer'])->name('employer
 
     Route::get('/subscription/{plan}/checkout', [SubscriptionController::class, 'checkout'])
         ->name('subscription.checkout');
+
+    Route::post('/subscription/pay', [SubscriptionController::class, 'pay'])
+        ->name('subscription.pay');
 });
 
 
@@ -83,6 +86,9 @@ Route::prefix('job_seeker')->middleware(['auth', 'role:job_seeker'])->name('job_
 
     Route::get('/subscription/{plan}/checkout', [SubscriptionController::class, 'checkout'])
         ->name('subscription.checkout');
+
+    Route::post('/subscription/pay', [SubscriptionController::class, 'pay'])
+        ->name('subscription.pay');
 });
 
 
