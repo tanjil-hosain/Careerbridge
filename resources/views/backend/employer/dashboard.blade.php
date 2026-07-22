@@ -113,7 +113,87 @@
             </div>
         </div>
 
+<div class="card shadow-sm mt-4">
 
+<div class="card-header">
+
+Recent Applications
+
+</div>
+
+<div class="card-body">
+
+<table class="table">
+
+<thead>
+
+<tr>
+
+<th>Applicant</th>
+
+<th>Job</th>
+
+<th>Status</th>
+
+<th>Date</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+@forelse($recentApplications as $application)
+
+<tr>
+
+<td>
+
+{{ $application->user->name }}
+
+</td>
+
+<td>
+
+{{ $application->job->title }}
+
+</td>
+
+<td>
+
+{{ ucfirst($application->status) }}
+
+</td>
+
+<td>
+
+{{ $application->created_at->format('d M Y') }}
+
+</td>
+
+</tr>
+
+@empty
+
+<tr>
+
+<td colspan="4" class="text-center">
+
+No Applications Found
+
+</td>
+
+</tr>
+
+@endforelse
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
 
 
     </main>
