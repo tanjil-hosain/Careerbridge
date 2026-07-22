@@ -508,7 +508,7 @@
 
                         </p>
 
-                        <a href="{{ route('jobs') }}"
+                        <a href=""
                            class="btn btn-primary">
 
                             Browse Jobs
