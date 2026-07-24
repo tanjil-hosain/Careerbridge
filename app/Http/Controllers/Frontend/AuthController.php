@@ -11,4 +11,7 @@ class AuthController extends Controller
     public function login(){
         Inertia::render('Login');
     }
+        public function register(){
+        Inertia::render('Register');
+    }
 }

@@ -1,9 +1,5 @@
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
-import GuestLayout from '@/Layouts/GuestLayout';
-import { Head, Link, useForm } from '@inertiajs/react';
+import React from 'react'
+import { useForm, Link } from '@inertiajs/react';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -22,99 +18,128 @@ export default function Register() {
     };
 
     return (
-        <GuestLayout>
-            <Head title="Register" />
+        <>
+            <main className="authentication-content">
+                <div className="container-fluid">
+                    <div className="authentication-card">
+                        <div className="card shadow rounded-0 overflow-hidden">
+                            <div className="row g-0">
+                                <div className="col-lg-6 bg-login d-flex align-items-center justify-content-center">
+                                    <img src="assets/images/error/login-img.jpg" className="img-fluid" alt="" />
+                                </div>
+                                <div className="col-lg-6">
+                                    <div className="card-body p-4 p-sm-5">
+                                        <h5 className="card-title">Sign Up</h5>
+                                        <p className="card-text mb-5">See your growth and get consulting support!</p>
+                                        <form onSubmit={submit} className="form-body">
 
-            <form onSubmit={submit}>
-                <div>
-                    <InputLabel htmlFor="name" value="Name" />
-
-                    <TextInput
-                        id="name"
-                        name="name"
-                        value={data.name}
-                        className="mt-1 block w-full"
-                        autoComplete="name"
-                        isFocused={true}
-                        onChange={(e) => setData('name', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.name} className="mt-2" />
+                                            <div className="d-grid">
+                                                <a className="btn btn-white radius-30" href="javascript:;"><span className="d-flex justify-content-center align-items-center">
+                                                    <img className="me-2" src="assets/images/icons/search.svg" width={16} alt="" />
+                                                    <span>Sign up with Google</span>
+                                                </span>
+                                                </a>
+                                            </div>
+                                            <div className="login-separater text-center mb-4"> <span>OR SIGN UP WITH
+                                                EMAIL</span>
+                                                <hr />
+                                            </div>
+                                            <div className="row g-3">
+                                                <div className="col-12 ">
+                                                    <label htmlFor="name" className="form-label">Name</label>
+                                                    <div className="ms-auto position-relative">
+                                                        <div className="position-absolute top-50 translate-middle-y search-icon px-3">
+                                                            <i className="bi bi-person-circle" />
+                                                        </div>
+                                                        <input id="name"
+                                                            type="text"
+                                                            name="name"
+                                                            value={data.name}
+                                                            className="form-control ps-5"
+                                                            autoComplete="name"
+                                                            isFocused={true}
+                                                            onChange={(e) => setData('name', e.target.value)}
+                                                            required />
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <label htmlFor="inputEmailAddress" className="form-label">Email
+                                                        Address</label>
+                                                    <div className="ms-auto position-relative">
+                                                        <div className="position-absolute top-50 translate-middle-y search-icon px-3">
+                                                            <i className="bi bi-envelope-fill" />
+                                                        </div>
+                                                        <input id="email"
+                                                            type="email"
+                                                            name="email"
+                                                            value={data.email}
+                                                            className="form-control ps-5"
+                                                            autoComplete="username"
+                                                            onChange={(e) => setData('email', e.target.value)}
+                                                            required />
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <label htmlFor="inputChoosePassword" className="form-label">Enter
+                                                        Password</label>
+                                                    <div className="ms-auto position-relative">
+                                                        <div className="position-absolute top-50 translate-middle-y search-icon px-3">
+                                                            <i className="bi bi-lock-fill" />
+                                                        </div>
+                                                        <input id="password"
+                                                            type="password"
+                                                            name="password"
+                                                            value={data.password}
+                                                            className="form-control ps-5"
+                                                            autoComplete="new-password"
+                                                            onChange={(e) => setData('password', e.target.value)}
+                                                            required />
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <label htmlFor="inputChoosePassword" className="form-label">Enter Confirm
+                                                        Password</label>
+                                                    <div className="ms-auto position-relative">
+                                                        <div className="position-absolute top-50 translate-middle-y search-icon px-3">
+                                                            <i className="bi bi-lock-fill" />
+                                                        </div>
+                                                        <input id="password_confirmation"
+                                                            type="password"
+                                                            name="password_confirmation"
+                                                            value={data.password_confirmation}
+                                                            className="form-control ps-5"
+                                                            autoComplete="new-password"
+                                                            onChange={(e) =>
+                                                                setData('password_confirmation', e.target.value)
+                                                            }
+                                                            required />
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div className="form-check form-switch">
+                                                        <input className="form-check-input" type="checkbox" id="flexSwitchCheckChecked" />
+                                                        <label className="form-check-label" htmlFor="flexSwitchCheckChecked">I
+                                                            Agree to the Terms &amp; Conditions</label>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <div className="d-grid">
+                                                        <button type="submit" className="btn btn-primary radius-30" disabled={processing}>Sign
+                                                            Up</button>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12">
+                                                    <p className="mb-0">Already have an account? <Link href={route('login')}>Sign in here</Link></p>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email" />
-
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        onChange={(e) => setData('email', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Password" />
-
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={(e) => setData('password', e.target.value)}
-                        required
-                    />
-
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
-
-                <div className="mt-4">
-                    <InputLabel
-                        htmlFor="password_confirmation"
-                        value="Confirm Password"
-                    />
-
-                    <TextInput
-                        id="password_confirmation"
-                        type="password"
-                        name="password_confirmation"
-                        value={data.password_confirmation}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={(e) =>
-                            setData('password_confirmation', e.target.value)
-                        }
-                        required
-                    />
-
-                    <InputError
-                        message={errors.password_confirmation}
-                        className="mt-2"
-                    />
-                </div>
-
-                <div className="mt-4 flex items-center justify-end">
-                    <Link
-                        href={route('login')}
-                        className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    >
-                        Already registered?
-                    </Link>
-
-                    <PrimaryButton className="ms-4" disabled={processing}>
-                        Register
-                    </PrimaryButton>
-                </div>
-            </form>
-        </GuestLayout>
-    );
+            </main>
+        </>
+    )
 }
