@@ -9,12 +9,14 @@ use App\Http\Controllers\BackendController\JobSeekerProfileController;
 use App\Http\Controllers\BackendController\PlanController;
 use App\Http\Controllers\BackendController\SubscriptionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Frontend\AuthController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/login',[AuthController::class, 'login']);
 
 
 // Route::get('/', function () {
