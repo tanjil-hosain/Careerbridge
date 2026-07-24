@@ -216,35 +216,4 @@ class JobController extends Controller
         );
     }
 
-
-    public function showApplication(Application $application)
-    {
-        // Security
-        if ($application->job->company_id != auth()->user()->company->id) {
-            abort(403);
-        }
-
-        return view(
-            'backend.employer.jobs.application_show',
-            compact('application')
-        );
-    }
-
-    public function updateApplication(Request $request, Application $application)
-    {
-        // Security
-        if ($application->job->company_id != auth()->user()->company->id) {
-            abort(403);
-        }
-
-        $request->validate([
-            'status' => 'required|in:pending,shortlisted,rejected',
-        ]);
-
-        $application->update([
-            'status' => $request->status,
-        ]);
-
-        return back()->with('success', 'Application status updated successfully.');
-    }
 }

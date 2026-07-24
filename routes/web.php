@@ -3,6 +3,7 @@
 use App\Http\Controllers\BackendController\ApplicationController;
 use App\Http\Controllers\BackendController\CategoryController;
 use App\Http\Controllers\BackendController\CompanyController;
+use App\Http\Controllers\BackendController\EmployerApplicationController;
 use App\Http\Controllers\BackendController\JobController;
 use App\Http\Controllers\BackendController\JobSeekerProfileController;
 use App\Http\Controllers\BackendController\PlanController;
@@ -47,10 +48,10 @@ Route::prefix('employer')->middleware(['auth', 'role:employer'])->name('employer
     Route::get('/jobs/{job}/applications', [JobController::class, 'applications'])
         ->name('jobs.applications');
 
-    Route::get('/applications/{application}', [JobController::class, 'showApplication'])
+    Route::get('/applications/{application}', [EmployerApplicationController::class, 'showApplication'])
         ->name('applications.show');
 
-    Route::put('/applications/{application}', [JobController::class, 'updateApplication'])
+    Route::put('/applications/{application}', [EmployerApplicationController::class, 'updateApplication'])
         ->name('applications.update');
 
     Route::get('/subscription/plans', [SubscriptionController::class, 'employerPlans'])
