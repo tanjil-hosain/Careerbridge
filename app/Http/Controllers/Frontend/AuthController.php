@@ -9,9 +9,9 @@ use Inertia\Inertia;
 class AuthController extends Controller
 {
     public function login(){
-        Inertia::render('Login');
+        return Inertia::render('Login');
     }
         public function register(){
-        Inertia::render('Register');
+       return Inertia::render('Register');
     }
 }

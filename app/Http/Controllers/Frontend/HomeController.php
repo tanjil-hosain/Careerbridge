@@ -8,34 +8,37 @@ use App\Models\Category;
 use App\Models\Company;
 use App\Models\Job;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $jobs = Job::where('status', true)
-            ->latest()
-            ->take(10)
-            ->get();
+        // $jobs = Job::where('status', true)
+        //     ->latest()
+        //     ->take(10)
+        //     ->get();
 
-        $categories = Category::where('status', true)->get();
-        $companies = Company::where('status', true)->latest()->take(8)->get();
+        // $categories = Category::where('status', true)->get();
+        // $companies = Company::where('status', true)->latest()->take(8)->get();
 
-        return view('frontend.home', compact('jobs', 'categories', 'companies'));
+       return Inertia::render('Home');
+
+        // return view('frontend.home', compact('jobs', 'categories', 'companies'));
     }
 
-    public function jobDetails(Job $job)
-    {
+    // public function jobDetails(Job $job)
+    // {
        
-        $job->load(['company', 'category']);
+    //     $job->load(['company', 'category']);
 
-        $alreadyApplied = false;
+    //     $alreadyApplied = false;
 
-        if(auth()->check() && auth()->user()->role=='job_seeker'){
-            $alreadyApplied = Application::where('job_id', $job->id)
-            ->where('user_id', auth()->id())->exists();
-        }
+    //     if(auth()->check() && auth()->user()->role=='job_seeker'){
+    //         $alreadyApplied = Application::where('job_id', $job->id)
+    //         ->where('user_id', auth()->id())->exists();
+    //     }
 
-        return view('frontend.pages.job_details', compact('job', 'alreadyApplied'));
-    }
+    //     return view('frontend.pages.job_details', compact('job', 'alreadyApplied'));
+    // }
 }
