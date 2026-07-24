@@ -67,7 +67,7 @@
                         <div class="menu-title">Account</div>
                     </a>
                     <ul>
-                        <li> <a href="app-chat-box.html"><i class="bi bi-arrow-right-short"></i>My Profile</a>
+                        <li> <a  href="{{ route('employer.company.index') }}"><i class="bi bi-arrow-right-short"></i>My Profile</a>
                         </li>
                         <li> <a href="app-file-manager.html"><i class="bi bi-arrow-right-short"></i>Logout</a>
                         </li>

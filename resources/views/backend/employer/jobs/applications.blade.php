@@ -9,54 +9,42 @@
                 <h4>
                     Applicants - {{ $job->title }}
                 </h4>
-
             </div>
 
             <div class="card-body">
-
                 <table class="table table-bordered">
-
                     <thead>
-
                         <tr>
-
                             <th>#</th>
-
                             <th>Name</th>
-
                             <th>Email</th>
-
                             <th>Status</th>
-
                             <th>Resume</th>
-
                             <th>Action</th>
-
                         </tr>
-
                     </thead>
-
                     <tbody>
-
                         @forelse($applications as $application)
                             <tr>
-
+                                
                                 <td>{{ $loop->iteration }}</td>
-
                                 <td>{{ $application->user->name }}</td>
-
                                 <td>{{ $application->user->email }}</td>
-
-                                <td>
-
-                                    <span class="badge bg-warning">
-
-                                        {{ ucfirst($application->status) }}
-
-                                    </span>
-
-                                </td>
-
+                                        <td>
+                                            @if($application->status=='pending')
+                                                <span class="badge bg-warning">
+                                                    Pending
+                                                </span>
+                                            @elseif($application->status=='shortlisted')
+                                                <span class="badge bg-success">
+                                                    Shortlisted
+                                                </span>
+                                            @else
+                                                <span class="badge bg-danger">
+                                                    Rejected
+                                                </span>
+                                            @endif
+                                        </td>
                                 <td>
 
                                     <a href="{{ asset('storage/' . $application->resume) }}" target="_blank">

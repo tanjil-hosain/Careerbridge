@@ -53,42 +53,116 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-7">
-                <div class="card shadow-sm">
-                    <div class="card-header">
-                        Subscription Details
-                    </div>
-                    <div class="card-body">
-                        @if ($subscription)
-                            <p>
-                                <b>Plan :</b>
-                                {{ $subscription->plan->name }}
-                            </p>
-                            <p>
-                                <b>Status :</b>
-                                <span class="badge bg-success">
-                                    {{ ucfirst($subscription->status) }}
-                                </span>
-                            </p>
-                            <p>
-                                <b>Remaining :</b>
-                                {{ $subscription->remaining_limit }}
-                            </p>
-                            <p>
-                                <b>Expire :</b>
+            <div class="col-lg-7 mb-4">
 
-                                {{ $subscription->end_date }}
-                            </p>
+                <div class="card shadow-sm border-0 h-100">
+
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center">
+
+                        <h5 class="mb-0">
+                            <i class="fas fa-crown text-warning me-2"></i>
+                            Subscription Details
+                        </h5>
+
+                        @if ($subscription)
+                            <span class="badge bg-success">
+                                {{ ucfirst($subscription->status) }}
+                            </span>
+                        @endif
+
+                    </div>
+
+                    <div class="card-body">
+
+                        @if ($subscription)
+                            <div class="row mb-3">
+
+                                <div class="col-6">
+
+                                    <small class="text-muted">Current Plan</small>
+
+                                    <h5 class="fw-bold">
+                                        {{ $subscription->plan->name }}
+                                    </h5>
+
+                                </div>
+
+                                <div class="col-6">
+
+                                    <small class="text-muted">Payment</small>
+
+                                    <h5 class="fw-bold text-success">
+                                        {{ ucfirst($subscription->payment_status) }}
+                                    </h5>
+
+                                </div>
+
+                            </div>
+
+                            <small class="text-muted">
+                                Remaining Applications
+                            </small>
+
+                            <div class="progress mb-2" style="height:10px;">
+
+                                @php
+                                    $limit = $subscription->plan->limit == -1 ? 100 : $subscription->plan->limit;
+                                    $remaining = $subscription->remaining_limit;
+                                    $percentage =
+                                        $subscription->plan->limit == -1 ? 100 : ($remaining / max($limit, 1)) * 100;
+                                @endphp
+
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{ $percentage }}%">
+
+                                </div>
+
+                            </div>
+
+                            <div class="d-flex justify-content-between">
+
+                                <small>
+                                    Remaining:
+                                    <strong>{{ $remaining }}</strong>
+                                </small>
+
+                                <small>
+
+                                    Expire:
+                                    <strong>
+
+                                        {{ \Carbon\Carbon::parse($subscription->end_date)->format('d M Y') }}
+
+                                    </strong>
+
+                                </small>
+
+                            </div>
+
+                            <hr>
+
                             <a href="{{ route('employer.subscription.plans') }}" class="btn btn-warning">
+
                                 Upgrade Plan
+
                             </a>
                         @else
                             <div class="alert alert-warning">
-                                No Subscription Found
+
+                                You don't have an active subscription.
+
                             </div>
+
+                            <a href="{{ route('employer.subscription.plans') }}" class="btn btn-primary">
+
+                                Buy Subscription
+
+                            </a>
                         @endif
+
                     </div>
+
                 </div>
+
             </div>
             <div class="col-lg-5">
                 <div class="card shadow-sm">
@@ -113,87 +187,109 @@
             </div>
         </div>
 
-<div class="card shadow-sm mt-4">
+        <div class="card shadow-sm mt-4">
 
-<div class="card-header">
+            <div class="card-header">
 
-Recent Applications
+                Recent Applications
 
-</div>
+            </div>
 
-<div class="card-body">
+            <div class="card-body">
 
-<table class="table">
+                <table class="table">
 
-<thead>
+                    <thead>
 
-<tr>
+                        <tr>
 
-<th>Applicant</th>
+                            <th>Applicant</th>
 
-<th>Job</th>
+                            <th>Job</th>
 
-<th>Status</th>
+                            <th>Status</th>
 
-<th>Date</th>
+                            <th>Date</th>
 
-</tr>
+                        </tr>
 
-</thead>
+                    </thead>
 
-<tbody>
+                    <tbody>
 
-@forelse($recentApplications as $application)
+                        @forelse($recentApplications as $application)
+                            <tr>
 
-<tr>
+                                <td>
 
-<td>
+                                    {{ $application->user->name }}
 
-{{ $application->user->name }}
+                                </td>
 
-</td>
+                                <td>
 
-<td>
+                                    {{ $application->job->title }}
 
-{{ $application->job->title }}
+                                </td>
 
-</td>
+                                        <td>
 
-<td>
+                                            @if($application->status=='pending')
 
-{{ ucfirst($application->status) }}
+                                                <span class="badge bg-warning">
 
-</td>
+                                                    Pending
 
-<td>
+                                                </span>
 
-{{ $application->created_at->format('d M Y') }}
+                                            @elseif($application->status=='shortlisted')
 
-</td>
+                                                <span class="badge bg-success">
 
-</tr>
+                                                    Shortlisted
 
-@empty
+                                                </span>
 
-<tr>
+                                            @else
 
-<td colspan="4" class="text-center">
+                                                <span class="badge bg-danger">
 
-No Applications Found
+                                                    Rejected
 
-</td>
+                                                </span>
 
-</tr>
+                                            @endif
 
-@endforelse
+                                        </td>
 
-</tbody>
+                                <td>
 
-</table>
+                                    {{ $application->created_at->format('d M Y') }}
 
-</div>
+                                </td>
 
-</div>
+                            </tr>
+
+                        @empty
+
+                            <tr>
+
+                                <td colspan="4" class="text-center">
+
+                                    No Applications Found
+
+                                </td>
+
+                            </tr>
+                        @endforelse
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
 
 
     </main>

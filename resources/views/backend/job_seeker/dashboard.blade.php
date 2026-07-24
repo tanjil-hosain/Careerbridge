@@ -440,7 +440,7 @@
 
                                         <td>
 
-                                            {{ $application->job->company->name }}
+                                            {{ $application->job->company->company_name }}
 
                                         </td>
 
