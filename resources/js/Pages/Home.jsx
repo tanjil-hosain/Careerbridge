@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useForm } from '@inertiajs/react';
 import FrontendLayout from '@/Layouts/FrontendLayout';
 
-export default function Home({ jobs = [], categories = [], companies = [] }) {
+export default function Home({ jobs, categories, companies }) {
   // const { data, setData, post, processing, reset } = useForm({
   //   email: '',
   // });
@@ -132,7 +132,7 @@ export default function Home({ jobs = [], categories = [], companies = [] }) {
                         </Link>
                       </h5>
                       <p className="text-center text-stroke-40 mt-20">
-                        {category.jobs_count || (category.jobs ? category.jobs.length : 0)} Available Vacancy
+                        {category.job_count || (category.jobs ? category.jobs.length : 0)} Available Vacancy
                       </p>
                     </div>
                   </div>
@@ -163,113 +163,113 @@ export default function Home({ jobs = [], categories = [], companies = [] }) {
                 </div>
               </div>
 
-<div className="mt-70">
-    <div className="tab-content" id="myTabContent-1">
-        <div
-            className="tab-pane fade show active"
-            id="tab-one-1"
-            role="tabpanel"
-            aria-labelledby="tab-one-1"
-        >
-            <div className="row">
-                {jobs?.map((job) => (
-                    <div className="col-lg-4 col-md-6" key={job.id}>
-                        <div className="card-grid-2 hover-up">
+              <div className="mt-70">
+                <div className="tab-content" id="myTabContent-1">
+                  <div
+                    className="tab-pane fade show active"
+                    id="tab-one-1"
+                    role="tabpanel"
+                    aria-labelledby="tab-one-1"
+                  >
+                    <div className="row">
+                      {jobs?.map((job) => (
+                        <div className="col-lg-4 col-md-6" key={job.id}>
+                          <div className="card-grid-2 hover-up">
                             <div className="text-center card-grid-2-image">
-                                <Link href={`/jobs/${job.id}`}>
-                                    <figure>
-                                        <img
-                                            src={
-                                                job.company?.logo
-                                                    ? `/storage/${job.company.logo}`
-                                                    : "/frontend_assets/imgs/brands/brand-1.png"
-                                            }
-                                            alt="jobhub"
-                                        />
-                                    </figure>
-                                </Link>
+                              <Link href={`/jobs/${job.id}`}>
+                                <figure>
+                                  <img
+                                    src={
+                                      job.company?.logo
+                                        ? `/storage/${job.company.logo}`
+                                        : "/frontend_assets/imgs/brands/brand-1.png"
+                                    }
+                                    alt="jobhub"
+                                  />
+                                </figure>
+                              </Link>
 
-                                <label className="btn-urgent">💼 Hiring</label>
+                              <label className="btn-urgent">💼 Hiring</label>
                             </div>
 
                             <div className="card-block-info">
+                              <div className="row">
+                                <div className="col-lg-7 col-6">
+                                  <Link href="#" className="card-2-img-text">
+                                    <span className="card-grid-2-img-small">
+                                      <img
+                                        src={
+                                          job.company?.logo
+                                            ? `/storage/${job.company.logo}`
+                                            : "/frontend_assets/imgs/brands/brand-1.png"
+                                        }
+                                        alt="jobhub"
+                                      />
+                                    </span>
+
+                                    <span>{job.company?.company_name}</span>
+                                  </Link>
+                                </div>
+
+                                <div className="col-lg-5 col-6 text-end">
+                                  <span className="btn btn-grey-small disc-btn">
+                                    {job.job_type}
+                                  </span>
+                                </div>
+                              </div>
+
+                              <h5 className="mt-20">
+                                <Link href={`/jobs/${job.id}`}>
+                                  {job.title}
+                                </Link>
+                              </h5>
+
+                              <div className="mt-15">
+                                <span className="card-time">
+                                  {job.created_at
+                                    ? new Date(job.created_at).toLocaleDateString()
+                                    : "Recently"}
+                                </span>
+
+                                <span className="card-location">
+                                  {job.location}
+                                </span>
+                              </div>
+
+                              <div className="card-2-bottom mt-30">
                                 <div className="row">
-                                    <div className="col-lg-7 col-6">
-                                        <Link href="#" className="card-2-img-text">
-                                            <span className="card-grid-2-img-small">
-                                                <img
-                                                    src={
-                                                        job.company?.logo
-                                                            ? `/storage/${job.company.logo}`
-                                                            : "/frontend_assets/imgs/brands/brand-1.png"
-                                                    }
-                                                    alt="jobhub"
-                                                />
-                                            </span>
+                                  <div className="col-lg-7 col-8">
+                                    <span className="card-text-price">
+                                      {job.salary}
+                                      <span>/Month</span>
+                                    </span>
+                                  </div>
 
-                                            <span>{job.company?.company_name}</span>
-                                        </Link>
-                                    </div>
-
-                                    <div className="col-lg-5 col-6 text-end">
-                                        <span className="btn btn-grey-small disc-btn">
-                                            {job.job_type}
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <h5 className="mt-20">
-                                    <Link href={`/jobs/${job.id}`}>
-                                        {job.title}
-                                    </Link>
-                                </h5>
-
-                                <div className="mt-15">
-                                    <span className="card-time">
-                                        {job.created_at
-                                            ? new Date(job.created_at).toLocaleDateString()
-                                            : "Recently"}
+                                  <div className="col-lg-5 col-4 text-end">
+                                    <span>
+                                      <img
+                                        src="/frontend_assets/imgs/theme/icons/shield-check.svg"
+                                        alt="jobhub"
+                                      />
                                     </span>
 
-                                    <span className="card-location">
-                                        {job.location}
+                                    <span className="ml-5">
+                                      <img
+                                        src="/frontend_assets/imgs/theme/icons/bookmark.svg"
+                                        alt="jobhub"
+                                      />
                                     </span>
+                                  </div>
                                 </div>
-
-                                <div className="card-2-bottom mt-30">
-                                    <div className="row">
-                                        <div className="col-lg-7 col-8">
-                                            <span className="card-text-price">
-                                                {job.salary}
-                                                <span>/Month</span>
-                                            </span>
-                                        </div>
-
-                                        <div className="col-lg-5 col-4 text-end">
-                                            <span>
-                                                <img
-                                                    src="/frontend_assets/imgs/theme/icons/shield-check.svg"
-                                                    alt="jobhub"
-                                                />
-                                            </span>
-
-                                            <span className="ml-5">
-                                                <img
-                                                    src="/frontend_assets/imgs/theme/icons/bookmark.svg"
-                                                    alt="jobhub"
-                                                />
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
+                              </div>
                             </div>
+                          </div>
                         </div>
+                      ))}
                     </div>
-                ))}
-            </div>
-        </div>
-    </div>
-</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
           <section className="section-box mt-50 mb-70 bg-patern">

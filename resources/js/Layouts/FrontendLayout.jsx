@@ -3,11 +3,12 @@ import Navbar from '@/Components/Navbar'
 import React from 'react'
 
 export default function FrontendLayout({ children }) {
-  return (
-    <>
-      <Navbar/>
-      {children}
-      <Footer/>
-    </>
-  )
+    return (
+        <>
+            <Navbar />
+            {children}
+            <Footer />
+
+        </>
+    )
 }

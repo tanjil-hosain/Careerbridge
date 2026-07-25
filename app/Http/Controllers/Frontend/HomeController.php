@@ -12,14 +12,17 @@ use Inertia\Inertia;
 
 class HomeController extends Controller
 {
-    public function index()
+public function index()
     {
         $jobs = Job::where('status', true)
+            ->with('company') // <-- Ekhane relation ta add kore dite hobe!
             ->latest()
             ->take(10)
             ->get();
 
-        $categories = Category::where('status', true)->get();
+        $categories = Category::where('status', true)
+        ->withCount('job')
+        ->get();
         $companies = Company::where('status', true)->latest()->take(8)->get();
 
        return Inertia::render('Home', [
@@ -27,8 +30,6 @@ class HomeController extends Controller
             'categories' => $categories,
             'companies' => $companies
         ]);
-
-        // return view('frontend.home', compact('jobs', 'categories', 'companies'));
     }
 
     public function jobDetails(Job $job)
