@@ -2494,10 +2494,11 @@ label {
 }
 
 .banner-hero {
-  padding: 0px 65px 0px 15px;
+  padding: 40px 65px 0px 15px;
   position: relative;
   max-width: 1770px;
-  margin: 0 auto;
+  margin: 0 auto 85px;
+  overflow: visible;
 }
 .banner-hero::before {
   content: "";
@@ -2516,6 +2517,7 @@ label {
 .banner-hero .banner-inner {
   z-index: 5;
   position: relative;
+  padding-bottom: 65px;
 }
 .banner-hero .banner-inner .banner-imgs {
   padding: 55px 0px 0px 0px;
