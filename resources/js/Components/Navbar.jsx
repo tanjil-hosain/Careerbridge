@@ -204,3 +204,20 @@ export default function Navbar() {
                 </li>
 
                 <li><hr className="dropdown-divider" /></li>
+                                <li>
+
+                    <Link
+                        className="dropdown-item"
+                        href={
+                            auth.user.role === "admin"
+                                ? "/admin/dashboard"
+                                : auth.user.role === "employer"
+                                    ? "/employer/dashboard"
+                                    : "/job_seeker/dashboard"
+                        }
+                    >
+                        <i className="bi bi-speedometer2 me-2"></i>
+
+                        Dashboard
+                    </Link>
+                </li>
