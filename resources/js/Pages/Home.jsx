@@ -1,4 +1,5 @@
 import Categories from '@/Components/Home/Categories'
+import FeaturedCompanies from '@/Components/Home/FeaturedCopnanies'
 import FeaturedJobs from '@/Components/Home/FeaturedJobs'
 import Hero from '@/Components/Home/Hero'
 import Search from '@/Components/Home/Search'
@@ -6,7 +7,7 @@ import FrontendLayout from '@/Layouts/FrontendLayout'
 import React from 'react'
 
 
-export default function Home({ categories, jobs }) {
+export default function Home({ categories, jobs, companies }) {
     
   return (
     <>
@@ -15,7 +16,8 @@ export default function Home({ categories, jobs }) {
        <Search categories={categories} />
        <FeaturedJobs jobs = {jobs}/>
        <Categories categories={categories}/>
+       <FeaturedCompanies companies={companies}/> 
       </FrontendLayout>
-    </>
+    </> 
   )
 }
