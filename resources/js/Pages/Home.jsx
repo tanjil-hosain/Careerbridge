@@ -1,10 +1,12 @@
-import Navbar from '@/Components/Navbar'
+import FrontendLayout from '@/Layouts/FrontendLayout'
 import React from 'react'
 
 export default function Home() {
   return (
     <>
-      <Navbar/>
+      <FrontendLayout>
+        <h1>Hello</h1>
+      </FrontendLayout>
     </>
   )
 }
