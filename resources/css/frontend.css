@@ -156,6 +156,82 @@ body {
 
 }
 
+
+/* ===========================
+   Categories
+=========================== */
+
+.category-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:30px 20px;
+
+    text-align:center;
+
+    transition:.35s;
+
+    border:1px solid #ececec;
+
+    height:100%;
+
+}
+
+.category-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+}
+
+.category-icon{
+
+    width:75px;
+
+    height:75px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:#e9f2ff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:32px;
+
+    color:#0d6efd;
+
+    transition:.35s;
+
+}
+
+.category-card:hover .category-icon{
+
+    background:#0d6efd;
+
+    color:#fff;
+
+}
+
+.category-card h5{
+
+    color:#212529;
+
+}
+
+.category-card span{
+
+    font-size:15px;
+
+}
 @media(max-width:992px) {
 
     .search-section {

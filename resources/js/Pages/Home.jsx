@@ -1,3 +1,4 @@
+import Categories from '@/Components/Home/Categories'
 import FeaturedJobs from '@/Components/Home/FeaturedJobs'
 import Hero from '@/Components/Home/Hero'
 import Search from '@/Components/Home/Search'
@@ -13,6 +14,7 @@ export default function Home({ categories, jobs }) {
        <Hero/>
        <Search categories={categories} />
        <FeaturedJobs jobs = {jobs}/>
+       <Categories categories={categories}/>
       </FrontendLayout>
     </>
   )
