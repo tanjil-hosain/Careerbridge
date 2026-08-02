@@ -62,8 +62,8 @@ export default function Navbar() {
                             <Link
                                 href="/"
                                 className={isActive("/")}
-                            >                         
-                             Home
+                            >
+                                Home
                             </Link>
                         </li>
 
@@ -120,104 +120,116 @@ export default function Navbar() {
 
                     </ul>
 
-{!auth?.user ? (
+                    {!auth?.user ? (
 
-    <div className="d-flex align-items-center gap-2">
+                        <div className="d-flex align-items-center gap-2">
 
-        <Link
-            href="/login"
-            className="btn btn-outline-primary rounded-pill px-4"
-        >
-            Login
-        </Link>
+                            <Link
+                                href="/login"
+                                className="btn btn-outline-primary rounded-pill px-4"
+                            >
+                                Login
+                            </Link>
 
-        <Link
-            href="/register"
-            className="btn btn-primary rounded-pill px-4"
-        >
-            Register
-        </Link>
+                            <Link
+                                href="/register"
+                                className="btn btn-primary rounded-pill px-4"
+                            >
+                                Register
+                            </Link>
 
-    </div>
+                        </div>
 
-) : (
+                    ) : (
 
-    <div className="d-flex align-items-center gap-3">
+                        <div className="d-flex align-items-center gap-3">
 
-        {/* Saved Jobs */}
+                            {/* Saved Jobs */}
 
-        <Link
-            href="/saved-jobs"
-            className="btn btn-light position-relative rounded-circle"
-            style={{ width: "42px", height: "42px" }}
-        >
+                            <Link
+                                href="/saved-jobs"
+                                className="btn btn-light position-relative rounded-circle"
+                                style={{ width: "42px", height: "42px" }}
+                            >
 
-            <i className="bi bi-heart fs-5"></i>
+                                <i className="bi bi-heart fs-5"></i>
 
-        </Link>
+                            </Link>
 
-        {/* Notification */}
+                            {/* Notification */}
 
-        <button
-            className="btn btn-light position-relative rounded-circle"
-            style={{ width: "42px", height: "42px" }}
-        >
+                            <button
+                                className="btn btn-light position-relative rounded-circle"
+                                style={{ width: "42px", height: "42px" }}
+                            >
 
-            <i className="bi bi-bell fs-5"></i>
+                                <i className="bi bi-bell fs-5"></i>
 
-            <span
-                className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-            >
+                                <span
+                                    className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                >
 
-                3
+                                    3
 
-            </span>
+                                </span>
 
-        </button>
+                            </button>
 
-        {/* User Dropdown */}
+                            {/* User Dropdown */}
 
-        <div className="dropdown">
+                            <div className="dropdown">
 
-            <button
-                className="btn btn-primary rounded-pill dropdown-toggle px-3"
-                type="button"
-                data-bs-toggle="dropdown"
-            >
+                                <button
+                                    className="btn btn-primary rounded-pill dropdown-toggle px-3"
+                                    type="button"
+                                    data-bs-toggle="dropdown"
+                                >
 
-                <i className="bi bi-person-circle me-2"></i>
+                                    <i className="bi bi-person-circle me-2"></i>
 
-                {auth.user.name}
+                                    {auth.user.name}
 
-            </button>
+                                </button>
 
-            <ul className="dropdown-menu dropdown-menu-end shadow border-0">
+                                <ul className="dropdown-menu dropdown-menu-end shadow border-0">
 
-                <li>
+                                    <li>
 
-                    <h6 className="dropdown-header">
+                                        <h6 className="dropdown-header">
 
-                        Welcome 👋
+                                            Welcome 👋
 
-                    </h6>
+                                        </h6>
 
-                </li>
+                                    </li>
 
-                <li><hr className="dropdown-divider" /></li>
-                                <li>
+                                    <li><hr className="dropdown-divider" /></li>
+                                    <li>
 
-                    <Link
-                        className="dropdown-item"
-                        href={
-                            auth.user.role === "admin"
-                                ? "/admin/dashboard"
-                                : auth.user.role === "employer"
-                                    ? "/employer/dashboard"
-                                    : "/job_seeker/dashboard"
-                        }
-                    >
-                        <i className="bi bi-speedometer2 me-2"></i>
+                                        <Link
+                                            className="dropdown-item"
+                                            href={
+                                                auth.user.role === "admin"
+                                                    ? "/admin/dashboard"
+                                                    : auth.user.role === "employer"
+                                                        ? "/employer/dashboard"
+                                                        : "/job_seeker/dashboard"
+                                            }
+                                        >
+                                            <i className="bi bi-speedometer2 me-2"></i>
 
-                        Dashboard
-                    </Link>
-                </li>
+                                            Dashboard
+                                        </Link>
+                                    </li>
+                                    <li>
+
+                                        <Link
+                                            href="/profile"
+                                            className="dropdown-item"
+                                        >
+                                            <i className="bi bi-person me-2"></i>
+
+                                            Profile
+                                        </Link>
+
+                                    </li>
