@@ -2,221 +2,205 @@ import { Link, usePage } from "@inertiajs/react";
 import { useState } from "react";
 
 export default function Navbar() {
-  const { auth } = usePage().props;
-  const [open, setOpen] = useState(false);
 
-  // Determine dashboard route based on user role
-  const getDashboardRoute = (role) => {
-    switch (role) {
-      case 'admin':
-        return route('admin.dashboard');
-      case 'employer':
-        return route('employer.dashboard');
-      case 'job_seeker':
-        return route('job_seeker.dashboard');
-      default:
-        return '#';
-    }
-  };
+    const { auth } = usePage().props;
+    const { url } = usePage();
 
-  const dashboardRoute = auth?.user ? getDashboardRoute(auth.user.role) : '#';
+    const [open, setOpen] = useState(false);
 
-  return (
-    <>
-      <div>
-        <header className="header sticky-bar">
-          <div className="container">
-            <div className="main-header">
-              <div className="header-left">
-                <div className="header-logo">
-                  <Link href="/" className="d-flex">
-                    <img alt="jobhub" src="/assets/imgs/theme/jobhub-logo.svg" />
-                  </Link>
-                </div>
-                <div className="header-nav">
-                  <nav className="nav-main-menu d-none d-xl-block">
-                    <ul className="main-menu">
-                      <li className="has-children">
-                        <Link className="active" href="/">Home</Link>
-                        <ul className="sub-menu">
-                          <li><Link href="/">Home 1</Link></li>
-                          <li><Link href="/index-2">Home 2</Link></li>
-                          <li><Link href="/index-3">Home 3</Link></li>
-                        </ul>
-                      </li>
-                      <li className="has-children">
-                        <Link href="/job-grid">Browse Jobs</Link>
-                        <ul className="sub-menu">
-                          <li><Link href="/job-grid">Job Grid</Link></li>
-                          <li><Link href="/job-grid-2">Job Grid 2</Link></li>
-                          <li><Link href="/job-list">Job List</Link></li>
-                          <li className="hr"><span /></li>
-                          <li><Link href="/job-single">Job Single 01</Link></li>
-                          <li><Link href="/job-single-2">Job Single 02</Link></li>
-                          <li><Link href="/job-single-3">Job Single 03</Link></li>
-                        </ul>
-                      </li>
-                      <li className="has-children">
-                        <Link href="/employers-grid">Employers</Link>
-                        <ul className="sub-menu">
-                          <li><Link href="/employers-grid">Employers Grid</Link></li>
-                          <li><Link href="/employers-grid-2">Employers Grid 2</Link></li>
-                          <li><Link href="/employers-list">Employers List</Link></li>
-                          <li className="hr"><span /></li>
-                          <li><Link href="/employers-single">Employers Single 01</Link></li>
-                          <li><Link href="/employers-single-2">Employers Single 02</Link></li>
-                        </ul>
-                      </li>
-                      <li className="has-children">
-                        <Link href="/candidates-grid">Candidates</Link>
-                        <ul className="sub-menu">
-                          <li><Link href="/candidates-grid">Candidates Grid</Link></li>
-                          <li><Link href="/candidates-grid-2">Candidates Grid 2</Link></li>
-                          <li><Link href="/candidates-list">Candidates List</Link></li>
-                          <li className="hr"><span /></li>
-                          <li><Link href="/candidates-single">Candidates Single 01</Link></li>
-                          <li><Link href="/candidates-single-2">Candidates Single 02</Link></li>
-                        </ul>
-                      </li>
-                      <li className="has-children">
-                        <Link href="#">Blog</Link>
-                        <ul className="sub-menu">
-                          <li><Link href="/blog-grid">Blog Grid</Link></li>
-                          <li><Link href="/blog-grid-2">Blog Grid Sidebar</Link></li>
-                          <li><Link href="/blog-list">Blog List</Link></li>
-                          <li className="hr"><span /></li>
-                          <li><Link href="/blog-single">Blog Single 01</Link></li>
-                          <li><Link href="/blog-single-2">Blog Single 02</Link></li>
-                        </ul>
-                      </li>
-                      <li className="has-children">
-                        <Link href="#">Pages</Link>
-                        <ul className="sub-menu">
-                          <li><Link href="/page-about">About Us</Link></li>
-                          <li><Link href="/page-service">Our Services</Link></li>
-                          <li><Link href="/page-pricing">Pricing Plan</Link></li>
-                          <li><Link href="/pages-faqs">FAQs</Link></li>
-                          <li><Link href="/page-contact">Contact Us</Link></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </nav>
-                  <div 
-                    className="burger-icon burger-icon-white"
+    const isActive = (path) => {
+        return url === path
+            ? "nav-link active fw-semibold text-primary"
+            : "nav-link";
+    };
+
+    return (
+
+        <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top py-3">
+            <div className="container">
+                <Link
+                    href="/"
+                    className="navbar-brand d-flex align-items-center"
+                >
+                    <div
+                        className="bg-primary rounded-circle d-flex justify-content-center align-items-center me-2"
+                        style={{
+                            width: "45px",
+                            height: "45px"
+                        }}
+                    >
+                        <i className="bi bi-briefcase-fill text-white fs-5"></i>
+
+                    </div>
+
+                    <div>
+                        <h4 className="mb-0 fw-bold">
+                            <span className="text-dark">
+                                Career
+                            </span>
+                            <span className="text-primary">
+                                Bridge
+                            </span>
+                        </h4>
+                        <small className="text-muted">
+                            Find Your Dream Job
+                        </small>
+                    </div>
+                </Link>
+
+                <button
+                    className="navbar-toggler"
+                    type="button"
                     onClick={() => setOpen(!open)}
-                  >
-                    <span className="burger-icon-top" />
-                    <span className="burger-icon-mid" />
-                    <span className="burger-icon-bottom" />
-                  </div>
-                </div>
-              </div>
-              <div className="header-right">
-                <div className="block-signin">
-                  {!auth?.user ? (
-                    <Link href={route('login')} className="btn btn-default btn-shadow ml-40 hover-up">
-                      Sign In
-                    </Link>
-                  ) : (
-                    <Link href={dashboardRoute} className="btn btn-default btn-shadow ml-40 hover-up">
-                      Dashboard
-                    </Link>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
+                >
+                    <span className="navbar-toggler-icon"></span>
+                </button>
 
-        {/* Mobile Header (You can toggle its visibility using the `open` state if needed) */}
-        <div className={`mobile-header-active mobile-header-wrapper-style perfect-scrollbar ${open ? 'sidebar-visible' : ''}`}>
-          <div className="mobile-header-wrapper-inner">
-            <div className="mobile-header-top">
-              <div className="user-account">
-                <img src="/assets/imgs/avatar/ava_1.png" alt="jobhub" />
-                <div className="content">
-                  <h6 className="user-name">
-                    Howdy, <span className="text-brand">{auth?.user?.name || 'AliThemes'}</span>
-                  </h6>
-                  <p className="font-xs text-muted">Manage your account</p>
-                </div>
-              </div>
-              <div 
-                className="burger-icon burger-icon-white"
-                onClick={() => setOpen(false)}
-              >
-                <span className="burger-icon-top" />
-                <span className="burger-icon-mid" />
-                <span className="burger-icon-bottom" />
-              </div>
-            </div>
-            <div className="mobile-header-content-area">
-              <div className="perfect-scroll">
-                <div className="mobile-search mobile-header-border mb-30">
-                  <form action="#">
-                    <input type="text" placeholder="Search for items…" />
-                    <i className="fi-rr-search" />
-                  </form>
-                </div>
-                <div className="mobile-menu-wrap mobile-header-border">
-                  <nav>
-                    <ul className="mobile-menu font-heading">
-                      <li className="has-children">
-                        <Link className="active" href="/">Home</Link>
-                      </li>
-                      <li className="has-children">
-                        <Link href="/job-grid">Browse Jobs</Link>
-                      </li>
-                      <li className="has-children">
-                        <Link href="/employers-grid">Employers</Link>
-                      </li>
-                      <li className="has-children">
-                        <Link href="/candidates-grid">Candidates</Link>
-                      </li>
-                      <li className="has-children">
-                        <Link href="#">Blog</Link>
-                      </li>
-                      <li className="has-children">
-                        <Link href="#">Pages</Link>
-                      </li>
+                <div className={`collapse navbar-collapse ${open ? "show" : ""}`}>
+                    <ul className="navbar-nav mx-auto">
+                        <li className="nav-item">
+                            <Link
+                                href="/"
+                                className={isActive("/")}
+                            >                         
+                             Home
+                            </Link>
+                        </li>
+
+                        <li className="nav-item">
+                            <Link
+                                href="/jobs"
+                                className={isActive("/jobs")}
+                            >
+                                Browse Jobs
+                            </Link>
+                        </li>
+
+                        <li className="nav-item">
+
+                            <Link
+                                href="/companies"
+                                className={isActive("/companies")}
+                            >
+                                Companies
+                            </Link>
+                        </li>
+
+                        <li className="nav-item">
+
+                            <Link
+                                href="/pricing"
+                                className={isActive("/pricing")}
+                            >
+                                Pricing
+                            </Link>
+                        </li>
+
+                        <li className="nav-item">
+
+                            <Link
+                                href="/about"
+                                className={isActive("/about")}
+                            >
+                                About
+                            </Link>
+
+                        </li>
+
+                        <li className="nav-item">
+
+                            <Link
+                                href="/contact"
+                                className={isActive("/contact")}
+                            >
+                                Contact
+                            </Link>
+
+                        </li>
+
                     </ul>
-                  </nav>
-                </div>
-                <div className="mobile-account">
-                  <h6 className="mb-10">Your Account</h6>
-                  <ul className="mobile-menu font-heading">
-                    {!auth?.user ? (
-                      <li>
-                        <Link href={route('login')}>Login</Link>
-                      </li>
-                    ) : (
-                      <>
-                        <li>
-                          <Link href={dashboardRoute}>Dashboard</Link>
-                        </li>
-                        <li>
-                          <Link href={route('logout')} method="post" as="button" className="border-0 bg-transparent">
-                            Logout
-                          </Link>
-                        </li>
-                      </>
-                    )}
-                  </ul>
-                </div>
-                <div className="mobile-social-icon mb-50">
-                  <h6 className="mb-25">Follow Us</h6>
-                  <a href="#"><img src="/assets/imgs/theme/icons/icon-facebook.svg" alt="jobhub" /></a>
-                  <a href="#"><img src="/assets/imgs/theme/icons/icon-twitter.svg" alt="jobhub" /></a>
-                  <a href="#"><img src="/assets/imgs/theme/icons/icon-instagram.svg" alt="jobhub" /></a>
-                  <a href="#"><img src="/assets/imgs/theme/icons/icon-pinterest.svg" alt="jobhub" /></a>
-                  <a href="#"><img src="/assets/imgs/theme/icons/icon-youtube.svg" alt="jobhub" /></a>
-                </div>
-                <div className="site-copyright">Copyright 2026 © JobHub. <br />Designed by AliThemes.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
+
+{!auth?.user ? (
+
+    <div className="d-flex align-items-center gap-2">
+
+        <Link
+            href="/login"
+            className="btn btn-outline-primary rounded-pill px-4"
+        >
+            Login
+        </Link>
+
+        <Link
+            href="/register"
+            className="btn btn-primary rounded-pill px-4"
+        >
+            Register
+        </Link>
+
+    </div>
+
+) : (
+
+    <div className="d-flex align-items-center gap-3">
+
+        {/* Saved Jobs */}
+
+        <Link
+            href="/saved-jobs"
+            className="btn btn-light position-relative rounded-circle"
+            style={{ width: "42px", height: "42px" }}
+        >
+
+            <i className="bi bi-heart fs-5"></i>
+
+        </Link>
+
+        {/* Notification */}
+
+        <button
+            className="btn btn-light position-relative rounded-circle"
+            style={{ width: "42px", height: "42px" }}
+        >
+
+            <i className="bi bi-bell fs-5"></i>
+
+            <span
+                className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+            >
+
+                3
+
+            </span>
+
+        </button>
+
+        {/* User Dropdown */}
+
+        <div className="dropdown">
+
+            <button
+                className="btn btn-primary rounded-pill dropdown-toggle px-3"
+                type="button"
+                data-bs-toggle="dropdown"
+            >
+
+                <i className="bi bi-person-circle me-2"></i>
+
+                {auth.user.name}
+
+            </button>
+
+            <ul className="dropdown-menu dropdown-menu-end shadow border-0">
+
+                <li>
+
+                    <h6 className="dropdown-header">
+
+                        Welcome 👋
+
+                    </h6>
+
+                </li>
+
+                <li><hr className="dropdown-divider" /></li>
