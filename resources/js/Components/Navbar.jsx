@@ -231,5 +231,14 @@ export default function Navbar() {
 
                                             Profile
                                         </Link>
+                                    </li>
+                                    <li>
 
+                                        <Link
+                                            href="/my-applications"
+                                            className="dropdown-item"
+                                        >
+                                            <i className="bi bi-file-earmark-text me-2"></i>
+                                            My Applications
+                                        </Link>
                                     </li>
