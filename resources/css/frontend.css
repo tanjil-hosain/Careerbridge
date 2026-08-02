@@ -92,6 +92,44 @@ body {
     max-width:100%;
 
 }
+.search-section{
+
+    margin-top:-45px;
+
+    position:relative;
+
+    z-index:10;
+
+}
+
+.search-section .card{
+
+    border-radius:20px;
+
+}
+
+.search-section input,
+.search-section select{
+
+    height:50px;
+
+}
+
+.search-section button{
+
+    height:50px;
+
+}
+
+@media(max-width:992px){
+
+.search-section{
+
+margin-top:40px;
+
+}
+
+}
 
 @media(max-width:992px){
 
