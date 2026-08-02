@@ -15,8 +15,8 @@ export default function Navbar() {
     };
 
     return (
-
-        <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top py-3">
+        <>
+                <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top py-3">
             <div className="container">
                 <Link
                     href="/"
@@ -242,3 +242,39 @@ export default function Navbar() {
                                             My Applications
                                         </Link>
                                     </li>
+                                    <li>
+
+                                        <Link
+                                            href="/subscription"
+                                            className="dropdown-item"
+                                        >
+                                            <i className="bi bi-stars me-2"></i>
+
+                                            Subscription
+                                        </Link>
+                                    </li>
+                                    <li><hr className="dropdown-divider" /></li>
+
+                                    <li>
+
+                                        <Link
+                                            href="/logout"
+                                            method="post"
+                                            as="button"
+                                            className="dropdown-item text-danger"
+                                        >
+                                            <i className="bi bi-box-arrow-right me-2"></i>
+                                            Logout
+                                        </Link>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </nav>
+        </>
+
+    )
+}

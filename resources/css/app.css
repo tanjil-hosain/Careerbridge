@@ -1,7 +1,1 @@
-@import'../../public/assets/css/bootstrap.min.css';
-@import'../../public/assets/css/bootstrap-extended.css';
-@import'../../public/assets/css/style.css';
-@import'../../public/assets/css/icons.css';
-@import'../../public/assets/css/pace.min.css';
-@import'../../public/frontend_assets/css/plugins/animate.min.css';
-@import'../../public/frontend_assets/css/main.css';
+@import '/resources/css/frontend.css';
