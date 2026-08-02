@@ -1,4 +1,5 @@
 import Categories from '@/Components/Home/Categories'
+import CTA from '@/Components/Home/CTA'
 import FeaturedCompanies from '@/Components/Home/FeaturedCopnanies'
 import FeaturedJobs from '@/Components/Home/FeaturedJobs'
 import Hero from '@/Components/Home/Hero'
@@ -19,6 +20,7 @@ export default function Home({ categories, jobs, companies }) {
        <Categories categories={categories}/>
        <FeaturedCompanies companies={companies}/> 
        <WhyChooseUs/>
+       <CTA/>
       </FrontendLayout>
     </> 
   )
