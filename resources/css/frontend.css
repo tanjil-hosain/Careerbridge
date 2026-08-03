@@ -343,6 +343,40 @@ body {
     color:#fff;
 
 }
+
+/* ===========================
+   Job Details
+=========================== */
+
+.job-details-logo{
+
+    width:90px;
+
+    height:90px;
+
+    object-fit:contain;
+
+    border:1px solid #eee;
+
+    border-radius:15px;
+
+    padding:10px;
+
+    background:#fff;
+
+}
+
+@media(max-width:768px){
+
+.job-details-logo{
+
+width:70px;
+
+height:70px;
+
+}
+
+}
 @media(max-width:992px) {
 
     .search-section {
