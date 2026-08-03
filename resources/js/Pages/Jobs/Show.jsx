@@ -1,7 +1,7 @@
 import FrontendLayout from "@/Layouts/FrontendLayout";
 import JobDetails from "@/Components/Jobs/JobDetails";
 import CompanyInfo from "@/Components/Jobs/CompanyInfo";
-import RelatedJobs from "@/Components/Jobs/RelatedJobs";
+// import RelatedJobs from "@/Components/Jobs/RelatedJobs";
 
 export default function Show({
 
@@ -33,7 +33,7 @@ export default function Show({
 
                 </div>
 
-                <RelatedJobs jobs={relatedJobs} />
+                {/* <RelatedJobs jobs={relatedJobs} /> */}
 
             </div>
 

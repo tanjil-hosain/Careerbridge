@@ -127,4 +127,46 @@ export default function JobDetails({ job }) {
 
                 </div>
 
-                <hr className="my-4"/>
+                <hr className="my-4" />
+
+                <div>
+
+                    <h4 className="fw-bold mb-3">
+
+                        Job Description
+
+                    </h4>
+
+                    <div
+                        dangerouslySetInnerHTML={{
+                            __html: job.description
+                        }}
+                    />
+
+                </div>
+
+                <hr className="my-4" />
+
+                <div>
+
+                    <h4 className="fw-bold mb-3">
+
+                        Requirements
+
+                    </h4>
+
+                    <div
+                        dangerouslySetInnerHTML={{
+                            __html: job.requirements
+                        }}
+                    />
+
+                </div>
+
+            </div>
+
+        </div>
+
+    );
+
+}

@@ -365,6 +365,27 @@ body {
     background:#fff;
 
 }
+/* ===========================
+   Company Card
+=========================== */
+
+.company-info-logo{
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:15px;
+
+    object-fit:contain;
+
+    border:1px solid #eee;
+
+    padding:10px;
+
+    background:#fff;
+
+}
 
 @media(max-width:768px){
 
