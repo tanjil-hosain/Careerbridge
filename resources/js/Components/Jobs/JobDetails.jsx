@@ -103,21 +103,20 @@ export default function JobDetails({ job }) {
                         {
                             auth.user ? (
 
-                                <button className="btn btn-primary px-4">
-
-                                    Apply Now
-
-                                </button>
+                                    <Link
+                                        href={route("jobs.apply.create", job.slug)}
+                                        className="btn btn-primary"
+                                    >
+                                        Apply Now
+                                    </Link>
 
                             ) : (
 
                                 <Link
-                                    href={route('login')}
-                                    className="btn btn-primary px-4"
+                                    href={route("login")}
+                                    className="btn btn-primary"
                                 >
-
                                     Login to Apply
-
                                 </Link>
 
                             )

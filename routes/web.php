@@ -9,6 +9,7 @@ use App\Http\Controllers\BackendController\JobSeekerProfileController;
 use App\Http\Controllers\BackendController\PlanController;
 use App\Http\Controllers\BackendController\SubscriptionController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Frontend\ApplicationController as FrontendApplicationController;
 use App\Http\Controllers\Frontend\AuthController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\JobController as FrontendJobController;
@@ -117,6 +118,18 @@ Route::controller(FrontendJobController::class)->group(function () {
     Route::get('/jobs', 'index')->name('jobs.index');
 
     Route::get('/jobs/{slug}', 'show')->name('jobs.show');
+
+});
+
+
+
+Route::middleware('auth')->group(function () {
+
+    Route::get('/jobs/{job:slug}/apply', [FrontendApplicationController::class, 'create'])
+        ->name('jobs.apply.create');
+
+    Route::post('/jobs/{job:slug}/apply', [ApplicationController::class, 'store'])
+        ->name('jobs.apply.store');
 
 });
 
