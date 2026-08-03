@@ -28,7 +28,7 @@
                         <li> <a href="{{ route('admin.categories.index') }}"><i class="bi bi-arrow-right-short"></i>
                                 Categories</a>
                         </li>
-                        <li> <a href="app-chat-box.html"><i class="bi bi-arrow-right-short"></i>All Jobs</a>
+                        <li> <a href="{{route('admin.jobs.index')}}"><i class="bi bi-arrow-right-short"></i>All Jobs</a>
                         </li>
                         <li> <a href="app-file-manager.html"><i class="bi bi-arrow-right-short"></i>Pending Jobs</a>
                         </li>

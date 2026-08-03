@@ -13,7 +13,7 @@ class AdminJobController extends Controller
             ->latest()
             ->paginate(10);
 
-        return view('admin.job.index', compact('jobs'));
+        return view('backend.admin.job.index', compact('jobs'));
     }
 
     public function show(Job $job)
