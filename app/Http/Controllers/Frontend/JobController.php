@@ -10,7 +10,7 @@ use Inertia\Inertia;
 
 class JobController extends Controller
 {
- public function index(Request $request)
+    public function index(Request $request)
     {
         $jobs = Job::with(['company', 'category'])
             ->where('status', 'active')
@@ -25,6 +25,9 @@ class JobController extends Controller
 
             ->when($request->location, function ($query) use ($request) {
                 $query->where('location', 'LIKE', '%' . $request->location . '%');
+            })
+            ->when($request->job_type, function ($query) use ($request) {
+                $query->where('job_type', $request->job_type);
             })
 
             ->latest()
