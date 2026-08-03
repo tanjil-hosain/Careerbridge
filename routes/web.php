@@ -128,7 +128,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/jobs/{job:slug}/apply', [FrontendApplicationController::class, 'create'])
         ->name('jobs.apply.create');
 
-    Route::post('/jobs/{job:slug}/apply', [ApplicationController::class, 'store'])
+    Route::post('/jobs/{job:slug}/apply', [FrontendApplicationController::class, 'store'])
         ->name('jobs.apply.store');
 
 });

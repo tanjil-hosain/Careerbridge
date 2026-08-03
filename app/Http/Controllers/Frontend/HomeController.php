@@ -22,6 +22,8 @@ public function index()
 
         $categories = Category::where('status', true)
         ->withCount('job')
+        ->latest()
+        ->take(8)
         ->get();
         $companies = Company::where('status', true)->latest()->take(8)->get();
 
