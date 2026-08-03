@@ -48,4 +48,29 @@ class JobController extends Controller
 
         ]);
     }
+
+    public function show($slug)
+    {
+        $job = Job::with([
+            'company',
+            'category'
+        ])
+            ->where('slug', $slug)
+            ->where('status', 1)
+            ->firstOrFail();
+
+        // Related Jobs
+        $relatedJobs = Job::with('company')
+            ->where('category_id', $job->category_id)
+            ->where('id', '!=', $job->id)
+            ->where('status', 1)
+            ->latest()
+            ->take(4)
+            ->get();
+
+        return Inertia::render('Jobs/Show', [
+            'job' => $job,
+            'relatedJobs' => $relatedJobs,
+        ]);
+    }
 }
