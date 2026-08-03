@@ -20,7 +20,7 @@ class AdminCompanyController extends Controller
     {
         $company->load(['user', 'job']);
 
-        return view('admin.company.show', compact('company'));
+        return view('backend.admin.company.show', compact('company'));
     }
 
     public function destroy(Company $company)
