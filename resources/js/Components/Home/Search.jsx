@@ -1,4 +1,5 @@
 import { useState } from "react";
+import{router} from "@inertiajs/react";
 
 export default function Search({ categories }) {
 
@@ -9,11 +10,13 @@ export default function Search({ categories }) {
     const handleSearch = (e) => {
         e.preventDefault();
 
-        console.log({
+        router.get("/jobs", {
             keyword,
             category,
             location,
         });
+
+
     };
 
     return (
