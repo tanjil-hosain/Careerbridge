@@ -55,7 +55,7 @@
                         <div class="menu-title">Company Managment</div>
                     </a>
                     <ul>
-                        <li> <a href="app-chat-box.html"><i class="bi bi-arrow-right-short"></i>Companies</a>
+                        <li> <a href="{{route('admin.companies.index')}}"><i class="bi bi-arrow-right-short"></i>Companies</a>
                         </li>
                     </ul>
                 </li>

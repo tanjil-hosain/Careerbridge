@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BackendController\AdminCompanyController;
 use App\Http\Controllers\BackendController\ApplicationController;
 use App\Http\Controllers\BackendController\CategoryController;
 use App\Http\Controllers\BackendController\CompanyController;
@@ -19,8 +20,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/login',[AuthController::class, 'login']);
-Route::get('/register',[AuthController::class, 'register']);
+Route::get('/login', [AuthController::class, 'login']);
+Route::get('/register', [AuthController::class, 'register']);
 
 
 // Route::get('/', function () {
@@ -40,6 +41,8 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->name('admin.')->grou
     Route::resource('/categories', CategoryController::class);
 
     Route::resource('plans', PlanController::class);
+    
+    Route::resource('companies', AdminCompanyController::class)->only(['index', 'show', 'destroy']);
 });
 
 
@@ -119,21 +122,24 @@ Route::controller(FrontendJobController::class)->group(function () {
     Route::get('/jobs', 'index')->name('jobs.index');
 
     Route::get('/jobs/{slug}', 'show')->name('jobs.show');
-
 });
 
 
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/jobs/{job:slug}/apply', [ FrontendApplicationController::class, 'create'])
+    Route::get('/jobs/{job:slug}/apply', [FrontendApplicationController::class, 'create'])
         ->name('jobs.apply.create');
 
-    Route::post('/jobs/{job:slug}/apply', [ FrontendApplicationController::class, 'store'])
+    Route::post('/jobs/{job:slug}/apply', [FrontendApplicationController::class, 'store'])
         ->name('jobs.apply.store');
-
 });
- Route::get('/companies/{company}', [FrontendCompanyController::class, 'show'])
-    ->name('companies.show');
+
+Route::controller(FrontendCompanyController::class)->group(function () {
+
+    Route::get('/companies', 'index')->name('companies.index');
+
+    Route::get('/companies/{company}', 'show')->name('companies.show');
+});
 
 require __DIR__ . '/auth.php';

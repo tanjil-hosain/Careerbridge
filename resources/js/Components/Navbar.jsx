@@ -63,7 +63,7 @@ export default function Navbar() {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link href="/companies" className={isActive("/companies")}>
+                                <Link href={route("companies.index")} className={isActive("/companies")}>
                                     Companies
                                 </Link>
                             </li>

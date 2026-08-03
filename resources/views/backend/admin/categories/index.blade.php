@@ -1,6 +1,7 @@
 @extends('backend.admin.layouts.master')
 
-@section('content') <div class="page-content">
+@section('content') 
+<div class="page-content">
 
     <div class="d-flex align-items-center justify-content-between mb-4">
         <div>
