@@ -11,7 +11,7 @@ class CompanyController extends Controller
     public function show(Company $company)
     {
         $company->load([
-            'jobs' => function ($query) {
+            'job' => function ($query) {
                 $query->where('status', 1)
                       ->latest();
             }
