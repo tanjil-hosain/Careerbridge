@@ -11,6 +11,7 @@ use App\Http\Controllers\BackendController\SubscriptionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Frontend\AuthController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\JobController as FrontendJobController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -111,7 +112,12 @@ Route::middleware('auth')->group(function () {
 
 //Front end
 
-Route::get('/jobs/{job}', [HomeController::class, 'jobDetails'])
-    ->name('jobs.details');
+Route::controller(FrontendJobController::class)->group(function () {
+
+    Route::get('/jobs', 'index')->name('jobs.index');
+
+    Route::get('/jobs/{slug}', 'show')->name('jobs.show');
+
+});
 
 require __DIR__ . '/auth.php';
