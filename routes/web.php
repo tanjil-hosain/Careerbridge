@@ -11,6 +11,7 @@ use App\Http\Controllers\BackendController\SubscriptionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Frontend\ApplicationController as FrontendApplicationController;
 use App\Http\Controllers\Frontend\AuthController;
+use App\Http\Controllers\Frontend\CompanyController as FrontendCompanyController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\JobController as FrontendJobController;
 use App\Http\Controllers\ProfileController;
@@ -125,12 +126,14 @@ Route::controller(FrontendJobController::class)->group(function () {
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/jobs/{job:slug}/apply', [FrontendApplicationController::class, 'create'])
+    Route::get('/jobs/{job:slug}/apply', [ FrontendApplicationController::class, 'create'])
         ->name('jobs.apply.create');
 
-    Route::post('/jobs/{job:slug}/apply', [FrontendApplicationController::class, 'store'])
+    Route::post('/jobs/{job:slug}/apply', [ FrontendApplicationController::class, 'store'])
         ->name('jobs.apply.store');
 
 });
+ Route::get('/companies/{company}', [FrontendCompanyController::class, 'show'])
+    ->name('companies.show');
 
 require __DIR__ . '/auth.php';

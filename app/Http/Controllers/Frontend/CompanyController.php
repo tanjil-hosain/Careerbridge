@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Http\Controllers\Frontend;
+
+use App\Http\Controllers\Controller;
+use App\Models\Company;
+use Inertia\Inertia;
+
+class CompanyController extends Controller
+{
+    public function show(Company $company)
+    {
+        $company->load([
+            'jobs' => function ($query) {
+                $query->where('status', 1)
+                      ->latest();
+            }
+        ]);
+
+        return Inertia::render('Companies/Show', [
+
+            'company' => $company,
+
+        ]);
+    }
+}
