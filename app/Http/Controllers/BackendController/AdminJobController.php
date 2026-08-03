@@ -20,7 +20,7 @@ class AdminJobController extends Controller
     {
         $job->load(['company', 'category']);
 
-        return view('admin.job.show', compact('job'));
+        return view('backend.admin.job.show', compact('job'));
     }
 
     public function destroy(Job $job)
