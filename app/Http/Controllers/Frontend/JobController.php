@@ -13,7 +13,7 @@ class JobController extends Controller
     public function index(Request $request)
     {
         $jobs = Job::with(['company', 'category'])
-            ->where('status', 'active')
+            ->where('status', true)
 
             ->when($request->keyword, function ($query) use ($request) {
                 $query->where('title', 'LIKE', '%' . $request->keyword . '%');

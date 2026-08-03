@@ -1,6 +1,6 @@
 import FrontendLayout from "@/Layouts/FrontendLayout";
 import FilterSidebar from "@/Components/Jobs/FilterSidebar";
-import JobCard from "@/Components/Jobs/JobCard";
+import JobList from "@/Components/Jobs/JobList";
 
 export default function Index({
 
@@ -8,9 +8,9 @@ export default function Index({
     categories,
     filters
 
-}){
+}) {
 
-    return(
+    return (
 
         <FrontendLayout>
 
@@ -32,22 +32,7 @@ export default function Index({
 
                     <div className="col-lg-9">
 
-                        <div className="row g-4">
-
-                            {jobs.data.map(job=>(
-
-                                <div
-                                    className="col-md-6"
-                                    key={job.id}
-                                >
-
-                                    <JobCard job={job}/>
-
-                                </div>
-
-                            ))}
-
-                        </div>
+                        <JobList jobs={jobs} />
 
                     </div>
 
@@ -57,6 +42,6 @@ export default function Index({
 
         </FrontendLayout>
 
-    )
+    );
 
 }
