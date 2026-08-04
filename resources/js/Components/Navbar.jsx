@@ -67,11 +67,11 @@ export default function Navbar() {
                                     Companies
                                 </Link>
                             </li>
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <Link href="/pricing" className={isActive("/pricing")}>
                                     Pricing
                                 </Link>
-                            </li>
+                            </li> */}
                             <li className="nav-item">
                                 <Link href="/about" className={isActive("/about")}>
                                     About
@@ -156,36 +156,7 @@ export default function Navbar() {
                                                 Dashboard
                                             </a>
                                         </li>
-                                        <li>
-                                            <Link
-                                                className="dropdown-item"
-                                                href="/profile"
-                                                onClick={() => setDropdownOpen(false)}
-                                            >
-                                                <i className="bi bi-person me-2"></i>
-                                                Profile
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link
-                                                className="dropdown-item"
-                                                href="/my-applications"
-                                                onClick={() => setDropdownOpen(false)}
-                                            >
-                                                <i className="bi bi-file-earmark-text me-2"></i>
-                                                My Applications
-                                            </Link>
-                                        </li>
-                                        <li>
-                                            <Link
-                                                className="dropdown-item"
-                                                href="/subscription"
-                                                onClick={() => setDropdownOpen(false)}
-                                            >
-                                                <i className="bi bi-stars me-2"></i>
-                                                Subscription
-                                            </Link>
-                                        </li>
+
                                         <li><hr className="dropdown-divider" /></li>
                                         <li>
                                             <Link
