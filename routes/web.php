@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BackendController\AdminCompanyController;
+use App\Http\Controllers\BackendController\AdminApplicationController;
 use App\Http\Controllers\BackendController\AdminJobController;
 use App\Http\Controllers\BackendController\ApplicationController;
 use App\Http\Controllers\BackendController\CategoryController;
@@ -45,6 +46,7 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->name('admin.')->grou
 
     Route::resource('companies', AdminCompanyController::class)->only(['index', 'show', 'destroy']);
     Route::resource('jobs', AdminJobController::class)->only(['index', 'show', 'destroy']);
+    Route::resource('applications', AdminApplicationController::class)->only(['index', 'show', 'destroy']);
 });
 
 

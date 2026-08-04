@@ -66,7 +66,7 @@
                         <div class="menu-title">Application Managment</div>
                     </a>
                     <ul>
-                        <li> <a href="app-chat-box.html"><i class="bi bi-arrow-right-short"></i>All Applications</a>
+                        <li> <a href="{{route('admin.applications.index')}}"><i class="bi bi-arrow-right-short"></i>All Applications</a>
                         </li>
                     </ul>
                 </li>
