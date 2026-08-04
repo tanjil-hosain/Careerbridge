@@ -69,4 +69,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Plan::class);
     }
+    public function savedJobs()
+    {
+        return $this->hasMany(SavedJob::class);
+    }
 }

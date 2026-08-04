@@ -13,10 +13,10 @@ use App\Http\Controllers\BackendController\PlanController;
 use App\Http\Controllers\BackendController\SubscriptionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Frontend\ApplicationController as FrontendApplicationController;
-use App\Http\Controllers\Frontend\AuthController;
 use App\Http\Controllers\Frontend\CompanyController as FrontendCompanyController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\JobController as FrontendJobController;
+use App\Http\Controllers\Frontend\SavedJobController as FrontendSavedJobController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -144,6 +144,12 @@ Route::controller(FrontendCompanyController::class)->group(function () {
     Route::get('/companies', 'index')->name('companies.index');
 
     Route::get('/companies/{company}', 'show')->name('companies.show');
+});
+
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/saved-jobs', [FrontendSavedJobController::class, 'index'])->name('saved.jobs.index');
+    Route::post('/job/save-toggle', [FrontendSavedJobController::class, 'toggle'])->name('job.save.toggle');
 });
 
 require __DIR__ . '/auth.php';
