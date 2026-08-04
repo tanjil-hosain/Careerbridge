@@ -47,8 +47,8 @@
                                         <form action="{{ route('register') }}" method="POST" class="form-body">
                                               @csrf
                                             <div class="d-grid">
-                                                <a class="btn btn-white radius-30" href="javascript:;"><span
-                                                        class="d-flex justify-content-center align-items-center">
+                                                <a class="btn btn-white radius-30" href="{{ route('social.redirect', 'google') }}">
+                                                    <span class="d-flex justify-content-center align-items-center">
                                                         <img class="me-2" src="assets/images/icons/search.svg"
                                                             width="16" alt="">
                                                         <span>Sign up with Google</span>

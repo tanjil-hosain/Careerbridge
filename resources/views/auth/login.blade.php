@@ -20,7 +20,7 @@
     <!-- loader-->
     <link href="{{ asset('') }}assets/css/pace.min.css" rel="stylesheet" />
 
-    <title>Skodash - Bootstrap 5 Admin Template</title>
+    <title>Career - Bootstrap 5 Admin Template</title>
 </head>
 
 <body>
@@ -44,8 +44,8 @@
                                     <form action="{{route('login')}}" method="POST" class="form-body">
                                         @csrf
                                         <div class="d-grid">
-                                            <a class="btn btn-white radius-30" href="javascript:;"><span
-                                                    class="d-flex justify-content-center align-items-center">
+                                            <a class="btn btn-white radius-30" href="{{ route('social.redirect', 'google') }}">
+                                                <span class="d-flex justify-content-center align-items-center">
                                                     <img class="me-2" src="assets/images/icons/search.svg"
                                                         width="16" alt="">
                                                     <span>Sign in with Google</span>

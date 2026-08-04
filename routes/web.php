@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\BackendController\AdminCompanyController;
 use App\Http\Controllers\BackendController\AdminApplicationController;
 use App\Http\Controllers\BackendController\AdminJobController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\Frontend\ApplicationController as FrontendApplicationCo
 use App\Http\Controllers\Frontend\CompanyController as FrontendCompanyController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\JobController as FrontendJobController;
+use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\SavedJobController as FrontendSavedJobController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -151,5 +153,18 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/saved-jobs', [FrontendSavedJobController::class, 'index'])->name('saved.jobs.index');
     Route::post('/job/save-toggle', [FrontendSavedJobController::class, 'toggle'])->name('job.save.toggle');
 });
+
+
+
+Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+Route::post('/contact', [PageController::class, 'contactStore'])->name('contact.store'); 
+
+
+//Google Login
+
+
+Route::get('/auth/{provider}/redirect', [SocialController::class, 'redirect'])->name('social.redirect');
+Route::get('/auth/{provider}/callback', [SocialController::class, 'callback'])->name('social.callback');
 
 require __DIR__ . '/auth.php';
