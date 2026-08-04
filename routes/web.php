@@ -22,8 +22,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/login', [AuthController::class, 'login']);
-Route::get('/register', [AuthController::class, 'register']);
+// Route::get('/login', [AuthController::class, 'login']);
+// Route::get('/register', [AuthController::class, 'register']);
 
 
 // Route::get('/', function () {
@@ -84,7 +84,7 @@ Route::prefix('employer')->middleware(['auth', 'role:employer'])->name('employer
 
 //Job_seekers---
 Route::prefix('job_seeker')->middleware(['auth', 'role:job_seeker'])->name('job_seeker.')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'job_seekerdDashboard'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'jobSeekerDashboard'])->name('dashboard');
 
     Route::resource('profile', JobSeekerProfileController::class);
 

@@ -6,7 +6,7 @@
             <div class="top-navbar d-none d-xl-block">
             <ul class="navbar-nav align-items-center">
               <li class="nav-item">
-              <a class="nav-link" href="index.html">Dashboard</a>
+              <a class="nav-link" href="{{url('/')}}">Home</a>
               </li>
               <li class="nav-item">
               <a class="nav-link" href="app-emailbox.html">Email</a>
@@ -36,7 +36,7 @@
                 <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" data-bs-toggle="dropdown">
                   <div class="user-setting d-flex align-items-center gap-1">
                     <img src="{{asset('')}}assets/images/avatars/avatar-1.png" class="user-img" alt="">
-                    <div class="user-name d-none d-sm-block">Jhon Deo</div>
+                    <div class="user-name d-none d-sm-block">{{Auth::user()->name}}</div>
                   </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
@@ -45,53 +45,24 @@
                        <div class="d-flex align-items-center">
                           <img src="{{asset('')}}assets/images/avatars/avatar-1.png" alt="" class="rounded-circle" width="60" height="60">
                           <div class="ms-3">
-                            <h6 class="mb-0 dropdown-user-name">Jhon Deo</h6>
+                            <h6 class="mb-0 dropdown-user-name">{{Auth::user()->name}}</h6>
                             <small class="mb-0 dropdown-user-designation text-secondary">HR Manager</small>
                           </div>
                        </div>
                      </a>
                    </li>
                    <li><hr class="dropdown-divider"></li>
-                   <li>
-                      <a class="dropdown-item" href="pages-user-profile.html">
-                         <div class="d-flex align-items-center">
-                           <div class="setting-icon"><i class="bi bi-person-fill"></i></div>
-                           <div class="setting-text ms-3"><span>Profile</span></div>
-                         </div>
-                       </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                         <div class="d-flex align-items-center">
-                           <div class="setting-icon"><i class="bi bi-gear-fill"></i></div>
-                           <div class="setting-text ms-3"><span>Setting</span></div>
-                         </div>
-                       </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="index2.html">
+
+                    <li><a class="dropdown-item" href="{{ url('/') }}">
                          <div class="d-flex align-items-center">
                            <div class="setting-icon"><i class="bi bi-speedometer"></i></div>
-                           <div class="setting-text ms-3"><span>Dashboard</span></div>
+                           <div class="setting-text ms-3"><span>Home</span></div>
                          </div>
                        </a>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="#">
-                         <div class="d-flex align-items-center">
-                           <div class="setting-icon"><i class="bi bi-piggy-bank-fill"></i></div>
-                           <div class="setting-text ms-3"><span>Earnings</span></div>
-                         </div>
-                       </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                         <div class="d-flex align-items-center">
-                           <div class="setting-icon"><i class="bi bi-cloud-arrow-down-fill"></i></div>
-                           <div class="setting-text ms-3"><span>Downloads</span></div>
-                         </div>
-                       </a>
-                    </li>
+                    
+                    
                     <li><hr class="dropdown-divider"></li>
                     <li>
                         <form action="{{route('logout')}}" method="POST">

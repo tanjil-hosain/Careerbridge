@@ -86,18 +86,18 @@ export default function Navbar() {
 
                         {!auth?.user ? (
                             <div className="d-flex align-items-center gap-2">
-                                <Link
+                                <a
                                     href="/login"
                                     className="btn btn-outline-primary rounded-pill px-4"
                                 >
                                     Login
-                                </Link>
-                                <Link
+                                </a>
+                                <a
                                     href="/register"
                                     className="btn btn-primary rounded-pill px-4"
                                 >
                                     Register
-                                </Link>
+                                </a>
                             </div>
                         ) : (
                             <div className="d-flex align-items-center gap-3">
