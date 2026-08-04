@@ -29,17 +29,20 @@ class DashboardController extends Controller
     }
 
 
-   public function adminDashboard()
+  public function adminDashboard()
     {
         return view('backend.admin.dashboard', [
-            // Spatie er bodole normal database column query use korbi:
             'totalEmployers' => User::where('role', 'employer')->count(),
             'totalJobSeekers' => User::where('role', 'job_seeker')->count(),
-            
             'totalCompanies' => Company::count(),
-            'totalJobs' => Job::where('status', 'active')->count(), 
+            
+            // Status 1 diye fix kore dilam:
+            'totalJobs' => Job::where('status', 1)->count(), 
+            
             'totalApplications' => Application::count(),
-            'totalPlans' => Plan::where('status', 'active')->count(), 
+            
+            // Status 1 diye fix kore dilam:
+            'totalPlans' => Plan::where('status', 1)->count(), 
             
             'latestJobs' => Job::with('company')
                 ->latest()
