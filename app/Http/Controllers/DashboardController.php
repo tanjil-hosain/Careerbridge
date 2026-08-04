@@ -28,9 +28,36 @@ class DashboardController extends Controller
         return redirect()->route('job_seeker.dashboard');
     }
 
-    public function adminDashbaord()
+
+   public function adminDashboard()
     {
-        return view('backend.admin.dashboard');
+        return view('backend.admin.dashboard', [
+            // Spatie er bodole normal database column query use korbi:
+            'totalEmployers' => User::where('role', 'employer')->count(),
+            'totalJobSeekers' => User::where('role', 'job_seeker')->count(),
+            
+            'totalCompanies' => Company::count(),
+            'totalJobs' => Job::where('status', 'active')->count(), 
+            'totalApplications' => Application::count(),
+            'totalPlans' => Plan::where('status', 'active')->count(), 
+            
+            'latestJobs' => Job::with('company')
+                ->latest()
+                ->take(5)
+                ->get(),
+
+            'latestApplications' => Application::with([
+                    'user',
+                    'job'
+                ])
+                ->latest()
+                ->take(5)
+                ->get(),
+
+            'latestCompanies' => Company::latest()
+                ->take(5)
+                ->get(),
+        ]);
     }
 
     public function employerDashboard()
@@ -42,7 +69,6 @@ class DashboardController extends Controller
         $totalApplications = 0;
 
         if ($company) {
-
             $totalJobs = Job::where('company_id', $company->id)->count();
 
             $activeJobs = Job::where('company_id', $company->id)
@@ -50,7 +76,6 @@ class DashboardController extends Controller
                 ->count();
 
             $totalApplications = Application::whereHas('job', function ($q) use ($company) {
-
                 $q->where('company_id', $company->id);
             })->count();
         }
@@ -63,7 +88,6 @@ class DashboardController extends Controller
 
         $recentApplications = Application::with(['user', 'job'])
             ->whereHas('job', function ($q) use ($company) {
-
                 if ($company) {
                     $q->where('company_id', $company->id);
                 }
@@ -81,10 +105,9 @@ class DashboardController extends Controller
         ));
     }
 
-
-    public function job_seekerdDashboard()
+    // Spelling fixed: jobSeekerDashboard (or match with your web.php route)
+    public function jobSeekerDashboard()
     {
-
         $appliedJobs = Application::where('user_id', auth()->id())->count();
 
         $subscription = Subscription::with('plan')
@@ -92,6 +115,7 @@ class DashboardController extends Controller
             ->where('status', 'active')
             ->latest()
             ->first();
+            
         $recentApplications = Application::with('job.company')
             ->where('user_id', auth()->id())
             ->latest()

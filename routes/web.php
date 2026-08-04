@@ -37,7 +37,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 
 //Admin Route--
 Route::prefix('admin')->middleware(['auth', 'role:admin'])->name('admin.')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'adminDashbaord'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'admindashboard'])->name('dashboard');
 
     //categorY route---->
     Route::resource('/categories', CategoryController::class);
