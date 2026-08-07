@@ -1,9 +1,6 @@
 <!doctype html>
 <html lang="en" class="minimal-theme">
 
-
-<!-- Mirrored from codervent.com/skodash/demo/collapsed-menu/ltr/authentication-signup.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Jul 2026 13:58:47 GMT -->
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -20,7 +17,7 @@
     <!-- loader-->
     <link href="{{ asset('') }}assets/css/pace.min.css" rel="stylesheet" />
 
-    <title>Skodash - Bootstrap 5 Admin Template</title>
+    <title>CareerBridge_Register</title>
 </head>
 
 <body>
@@ -41,11 +38,33 @@
                             <div class="col-lg-6">
                                 <div class="card-body p-4 p-sm-5">
                                     
-                                      
+                                    
+                                    
                                         <h5 class="card-title">Sign Up</h5>
-                                        <p class="card-text mb-5">See your growth and get consulting support!</p>
+                                        <p class="card-text mb-4">See your growth and get consulting support!</p>
+                                        
                                         <form action="{{ route('register') }}" method="POST" class="form-body">
-                                              @csrf
+                                            @csrf
+                                            
+                                            <!-- Role Selection Section -->
+                                            <div class="mb-4">
+                                                <label class="form-label fw-bold text-dark">Select Your Account Type</label>
+                                                <div class="row g-2">
+                                                    <div class="col-6">
+                                                        <input type="radio" class="btn-check" name="role" id="jobSeekerRole" value="job_seeker" checked autocomplete="off">
+                                                        <label class="btn btn-outline-primary w-100 radius-30 py-2" for="jobSeekerRole">
+                                                            <i class="bi bi-person-badge me-1"></i> Job Seeker
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <input type="radio" class="btn-check" name="role" id="employerRole" value="employer" autocomplete="off">
+                                                        <label class="btn btn-outline-primary w-100 radius-30 py-2" for="employerRole">
+                                                            <i class="bi bi-briefcase me-1"></i> Employer
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div class="d-grid">
                                                 <a class="btn btn-white radius-30" href="{{ route('social.redirect', 'google') }}">
                                                     <span class="d-flex justify-content-center align-items-center">
@@ -98,7 +117,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
-                                                    <label for="inputChoosePassword" class="form-label">Enter Confirm
+                                                    <label for="inputConfirmPassword" class="form-label">Enter Confirm
                                                         Password</label>
                                                     <div class="ms-auto position-relative">
                                                         <div
@@ -106,7 +125,7 @@
                                                             <i class="bi bi-lock-fill"></i>
                                                         </div>
                                                         <input type="password" class="form-control radius-30 ps-5"
-                                                            id="inputChoosePassword" placeholder="Enter Password"
+                                                            id="inputConfirmPassword" placeholder="Enter Password"
                                                             name="password_confirmation">
                                                     </div>
                                                 </div>
@@ -115,18 +134,18 @@
                                                         <input class="form-check-input" type="checkbox"
                                                             id="flexSwitchCheckChecked">
                                                         <label class="form-check-label" for="flexSwitchCheckChecked">I
-                                                            Agree to the Trems & Conditions</label>
+                                                            Agree to the Terms & Conditions</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <div class="d-grid">
                                                         <button class="btn btn-primary radius-30">Sign
-                                                            in</button>
+                                                            Up</button>
                                                     </div>
                                                 </div>
                                                 <div class="col-12">
                                                     <p class="mb-0">Already have an account? <a
-                                                            href="{{route('login')}}">Sign up here</a></p>
+                                                            href="{{route('login')}}">Sign in here</a></p>
                                                 </div>
                                             </div>
                                         </form>
