@@ -132,7 +132,7 @@ Route::controller(FrontendJobController::class)->group(function () {
 
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'role:job_seeker'])->group(function () {
 
     Route::get('/jobs/{job:slug}/apply', [FrontendApplicationController::class, 'create'])
         ->name('jobs.apply.create');

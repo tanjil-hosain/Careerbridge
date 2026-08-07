@@ -100,27 +100,36 @@ export default function JobDetails({ job }) {
 
                         </div>
 
-                        {
-                            auth.user ? (
+                       {
+    !auth.user ? (
 
-                                    <Link
-                                        href={route("jobs.apply.create", job.slug)}
-                                        className="btn btn-primary"
-                                    >
-                                        Apply Now
-                                    </Link>
+        <Link
+            href={route("login")}
+            className="btn btn-primary"
+        >
+            Login to Apply
+        </Link>
 
-                            ) : (
+    ) : auth.user.role === "job_seeker" ? (
 
-                                <Link
-                                    href={route("login")}
-                                    className="btn btn-primary"
-                                >
-                                    Login to Apply
-                                </Link>
+        <Link
+            href={route("jobs.apply.create", job.slug)}
+            className="btn btn-primary"
+        >
+            Apply Now
+        </Link>
 
-                            )
-                        }
+    ) : (
+
+        <button
+            className="btn btn-secondary"
+            disabled
+        >
+            Only Job Seekers Can Apply
+        </button>
+
+    )
+}
 
                     </div>
 
