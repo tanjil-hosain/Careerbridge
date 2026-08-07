@@ -9,22 +9,22 @@ class AdminUserManagementController extends Controller
 {
     public function employers()
     {
-        $users = User::role('employer')
-            ->with(['company', 'job'])
+        $users = User::where('role', 'employer')
+            ->with('company')
             ->latest()
             ->paginate(10);
 
-        return view('admin.user.employers', compact('users'));
+        return view('backend.admin.user.employer', compact('users'));
     }
 
     public function jobSeekers()
     {
-        $users = User::role('job_seeker')
+        $users = User::role('role', 'job_seeker')
             ->withCount('applications')
             ->latest()
             ->paginate(10);
 
-        return view('admin.user.job_seekers', compact('users'));
+        return view('backend.admin.user.job_seekers', compact('users'));
     }
 
     public function show(User $user)
@@ -43,7 +43,6 @@ class AdminUserManagementController extends Controller
         if ($user->hasRole('admin')) {
 
             return back()->with('error', 'Admin cannot be deleted.');
-
         }
 
         $user->delete();

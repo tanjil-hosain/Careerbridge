@@ -41,9 +41,9 @@
                         <div class="menu-title">User Managment</div>
                     </a>
                     <ul>
-                        <li> <a href="app-chat-box.html"><i class="bi bi-arrow-right-short"></i>Job Seekers</a>
+                        <li> <a href=""><i class="bi bi-arrow-right-short"></i>Job Seekers</a>
                         </li>
-                        <li> <a href="app-file-manager.html"><i class="bi bi-arrow-right-short"></i>Employers</a>
+                        <li> <a href="{{route('admin.users.employers')}}"><i class="bi bi-arrow-right-short"></i>Employers</a>
                         </li>
                     </ul>
                 </li>
