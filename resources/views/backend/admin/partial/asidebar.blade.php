@@ -30,8 +30,7 @@
                         </li>
                         <li> <a href="{{route('admin.jobs.index')}}"><i class="bi bi-arrow-right-short"></i>All Jobs</a>
                         </li>
-                        <li> <a href="app-file-manager.html"><i class="bi bi-arrow-right-short"></i>Pending Jobs</a>
-                        </li>
+
                     </ul>
                 </li>
 
@@ -70,19 +69,7 @@
                         </li>
                     </ul>
                 </li>
-                <li>
-                    <a href="javascript:;" class="has-arrow">
-                        <div class="parent-icon"><i class="bi bi-grid"></i>
-                        </div>
-                        <div class="menu-title">Account</div>
-                    </a>
-                    <ul>
-                        <li> <a href="app-chat-box.html"><i class="bi bi-arrow-right-short"></i>My Profile</a>
-                        </li>
-                        <li> <a href="app-file-manager.html"><i class="bi bi-arrow-right-short"></i>Logout</a>
-                        </li>
-                    </ul>
-                </li>
+
                 <li>
                     <a href="{{route('admin.plans.index')}}">
                         <div class="parent-icon"><i class="bi bi-arrow-right-short"></i>

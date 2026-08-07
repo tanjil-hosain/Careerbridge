@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\SocialController;
 use App\Http\Controllers\BackendController\AdminCompanyController;
 use App\Http\Controllers\BackendController\AdminApplicationController;
 use App\Http\Controllers\BackendController\AdminJobController;
+use App\Http\Controllers\BackendController\AdminUserManagementController;
 use App\Http\Controllers\BackendController\ApplicationController;
 use App\Http\Controllers\BackendController\CategoryController;
 use App\Http\Controllers\BackendController\CompanyController;
@@ -49,6 +50,21 @@ Route::prefix('admin')->middleware(['auth', 'role:admin'])->name('admin.')->grou
     Route::resource('companies', AdminCompanyController::class)->only(['index', 'show', 'destroy']);
     Route::resource('jobs', AdminJobController::class)->only(['index', 'show', 'destroy']);
     Route::resource('applications', AdminApplicationController::class)->only(['index', 'show', 'destroy']);
+
+    Route::prefix('users')->name('users.')->group(function () {
+
+        Route::get('/employers', [AdminUserManagementController::class, 'employers'])
+            ->name('employers');
+
+        Route::get('/job-seekers', [AdminUserManagementController::class, 'jobSeekers'])
+            ->name('job_seekers');
+
+        Route::get('/{user}', [AdminUserManagementController::class, 'show'])
+            ->name('show');
+
+        Route::delete('/{user}', [AdminUserManagementController::class, 'destroy'])
+            ->name('destroy');
+    });
 });
 
 
@@ -158,7 +174,7 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
-Route::post('/contact', [PageController::class, 'contactStore'])->name('contact.store'); 
+Route::post('/contact', [PageController::class, 'contactStore'])->name('contact.store');
 
 
 //Google Login
