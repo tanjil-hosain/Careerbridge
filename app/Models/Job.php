@@ -40,7 +40,4 @@ class Job extends Model
         return $this->hasMany(SavedJob::class);
     }
 
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
 }

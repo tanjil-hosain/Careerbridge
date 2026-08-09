@@ -19,7 +19,7 @@ class AdminUserManagementController extends Controller
 
     public function jobSeekers()
     {
-        $users = User::role('role', 'job_seeker')
+        $users = User::where('role', 'job_seeker')
             ->withCount('applications')
             ->latest()
             ->paginate(10);
@@ -31,16 +31,16 @@ class AdminUserManagementController extends Controller
     {
         $user->load([
             'company',
-            'job',
+            'jobSeekerProfile',
             'applications'
         ]);
 
-        return view('admin.user.show', compact('user'));
+        return view('backend.admin.user.show', compact('user'));
     }
 
     public function destroy(User $user)
     {
-        if ($user->hasRole('admin')) {
+        if ($user->role ==='admin') {
 
             return back()->with('error', 'Admin cannot be deleted.');
         }
