@@ -1,4 +1,4 @@
-        <aside class="sidebar-wrapper" data-simplebar="true">
+<aside class="sidebar-wrapper" data-simplebar="true">
             <div class="sidebar-header">
                 <div>
                     <img src="{{ asset('') }}assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
@@ -11,72 +11,80 @@
             </div>
             <!--navigation-->
             <ul class="metismenu" id="menu">
-                <li>
+                <li class="{{ request()->routeIs('admin.dashboard') ? 'mm-active' : '' }}">
                     <a href="{{route('admin.dashboard')}}">
                         <div class="parent-icon"><i class="bi bi-file-earmark-code"></i>
                         </div>
                         <div class="menu-title">Dashboard</div>
                     </a>
                 </li>
-                <li>
+                
+                <li class="{{ request()->routeIs('admin.categories.*', 'admin.jobs.*') ? 'mm-active' : '' }}">
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon"><i class="bi bi-grid"></i>
                         </div>
                         <div class="menu-title">Job Management</div>
                     </a>
                     <ul>
-                        <li> <a href="{{ route('admin.categories.index') }}"><i class="bi bi-arrow-right-short"></i>
-                                Categories</a>
+                        <li class="{{ request()->routeIs('admin.categories.*') ? 'mm-active' : '' }}"> 
+                            <a href="{{ route('admin.categories.index') }}"><i class="bi bi-arrow-right-short"></i>Categories</a>
                         </li>
-                        <li> <a href="{{route('admin.jobs.index')}}"><i class="bi bi-arrow-right-short"></i>All Jobs</a>
+                        <li class="{{ request()->routeIs('admin.jobs.*') ? 'mm-active' : '' }}"> 
+                            <a href="{{route('admin.jobs.index')}}"><i class="bi bi-arrow-right-short"></i>All Jobs</a>
                         </li>
-
                     </ul>
                 </li>
 
-                <li>
+                <li class="{{ request()->routeIs('admin.users.*') ? 'mm-active' : '' }}">
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon"><i class="bi bi-grid"></i>
                         </div>
                         <div class="menu-title">User Managment</div>
                     </a>
                     <ul>
-                        <li> <a href=""><i class="bi bi-arrow-right-short"></i>Job Seekers</a>
+                        <li class="{{ request()->routeIs('admin.users.job_seekers') ? 'mm-active' : '' }}"> 
+                            <a href="{{route('admin.users.job_seekers')}}"><i class="bi bi-arrow-right-short"></i>Job Seekers</a>
                         </li>
-                        <li> <a href="{{route('admin.users.employers')}}"><i class="bi bi-arrow-right-short"></i>Employers</a>
+                        <li class="{{ request()->routeIs('admin.users.employers') ? 'mm-active' : '' }}"> 
+                            <a href="{{route('admin.users.employers')}}"><i class="bi bi-arrow-right-short"></i>Employers</a>
                         </li>
                     </ul>
                 </li>
-                <li>
+
+                <li class="{{ request()->routeIs('admin.companies.*') ? 'mm-active' : '' }}">
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon"><i class="bi bi-grid"></i>
                         </div>
                         <div class="menu-title">Company Managment</div>
                     </a>
                     <ul>
-                        <li> <a href="{{route('admin.companies.index')}}"><i class="bi bi-arrow-right-short"></i>Companies</a>
+                        <li class="{{ request()->routeIs('admin.companies.*') ? 'mm-active' : '' }}"> 
+                            <a href="{{route('admin.companies.index')}}"><i class="bi bi-arrow-right-short"></i>Companies</a>
                         </li>
                     </ul>
                 </li>
-                <li>
+
+                <li class="{{ request()->routeIs('admin.applications.*') ? 'mm-active' : '' }}">
                     <a href="javascript:;" class="has-arrow">
                         <div class="parent-icon"><i class="bi bi-grid"></i>
                         </div>
                         <div class="menu-title">Application Managment</div>
                     </a>
                     <ul>
-                        <li> <a href="{{route('admin.applications.index')}}"><i class="bi bi-arrow-right-short"></i>All Applications</a>
+                        <li class="{{ request()->routeIs('admin.applications.*') ? 'mm-active' : '' }}"> 
+                            <a href="{{route('admin.applications.index')}}"><i class="bi bi-arrow-right-short"></i>All Applications</a>
                         </li>
                     </ul>
                 </li>
 
-                <li>
+                <li class="{{ request()->routeIs('admin.plans.*') ? 'mm-active' : '' }}">
                     <a href="{{route('admin.plans.index')}}">
                         <div class="parent-icon"><i class="bi bi-arrow-right-short"></i>
                         </div>
                         <div class="menu-title">Plans</div>
                     </a>
                 </li>
+
                 <li>
                     <a href="javascript:;">
                         <div class="parent-icon"><i class="bi bi-headset"></i>

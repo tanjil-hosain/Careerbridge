@@ -24,7 +24,7 @@ class AdminUserManagementController extends Controller
             ->latest()
             ->paginate(10);
 
-        return view('backend.admin.user.job_seekers', compact('users'));
+        return view('backend.admin.user.job_seeker', compact('users'));
     }
 
     public function show(User $user)
@@ -40,13 +40,23 @@ class AdminUserManagementController extends Controller
 
     public function destroy(User $user)
     {
-        if ($user->role ==='admin') {
-
+        if ($user->role === 'admin') {
             return back()->with('error', 'Admin cannot be deleted.');
         }
 
+        $role = $user->role;
+
         $user->delete();
 
-        return back()->with('success', 'User deleted successfully.');
+        if ($role === 'employer') {
+
+            return redirect()
+                ->route('admin.users.employers')
+                ->with('success', 'Employer deleted successfully.');
+        }
+
+        return redirect()
+            ->route('admin.users.job_seekers')
+            ->with('success', 'Job seeker deleted successfully.');
     }
 }
