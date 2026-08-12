@@ -8,42 +8,33 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
 
-import { createInertiaApp, usePage } from '@inertiajs/react';
+import { createInertiaApp, router } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
-import { useEffect } from 'react';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
+const showToasts = (props) => {
 
-function ToastHandler() {
+    const flash = props?.flash;
+    const errors = props?.errors;
 
-    const { flash, errors } = usePage().props;
+    if (flash?.success) {
+        toastr.success(flash.success);
+    }
 
-    useEffect(() => {
+    if (flash?.error) {
+        toastr.error(flash.error);
+    }
 
-        if (flash?.success) {
-            toastr.success(flash.success);
-        }
+    if (errors && Object.keys(errors).length > 0) {
 
-        if (flash?.error) {
-            toastr.error(flash.error);
-        }
+        Object.values(errors).forEach((error) => {
+            toastr.error(error);
+        });
 
-        if (errors && Object.keys(errors).length > 0) {
-
-            Object.values(errors).forEach((error) => {
-                toastr.error(error);
-            });
-
-        }
-
-    }, [flash, errors]);
-
-
-    return null;
-}
-
+    }
+};
 
 createInertiaApp({
 
@@ -59,13 +50,15 @@ createInertiaApp({
 
         const root = createRoot(el);
 
-        root.render(
-            <>
-                <App {...props} />
+        // Initial page
+        showToasts(props);
 
-                <ToastHandler />
-            </>
-        );
+        // Every Inertia navigation
+        router.on('navigate', (event) => {
+            showToasts(event.detail.page.props);
+        });
+
+        root.render(<App {...props} />);
     },
 
     progress: {
