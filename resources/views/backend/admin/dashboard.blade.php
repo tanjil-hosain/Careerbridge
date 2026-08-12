@@ -103,7 +103,7 @@
 
     </div>
 
-    <!-- ================= TABLES SECTION (Latest Data) ================= -->
+
     <div class="row">
         
         <!-- Latest Jobs Table -->

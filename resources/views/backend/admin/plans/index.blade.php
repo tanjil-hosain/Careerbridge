@@ -26,16 +26,6 @@
 
                 <div class="card-body">
 
-                    @if (session('success'))
-                        <div class="alert alert-success alert-dismissible fade show">
-
-                            {{ session('success') }}
-
-                            <button class="btn-close" data-bs-dismiss="alert"></button>
-
-                        </div>
-                    @endif
-
                     <div class="table-responsive">
 
                         <table class="table table-hover align-middle">

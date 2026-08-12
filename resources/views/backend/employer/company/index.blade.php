@@ -22,14 +22,8 @@
             @endif
         </div>
 
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <i class="bi bi-check-circle me-1"></i>
-                {{ session('success') }}
 
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        @endif
+        
 
         @if ($company)
             <div class="card border-0 shadow-sm overflow-hidden">
