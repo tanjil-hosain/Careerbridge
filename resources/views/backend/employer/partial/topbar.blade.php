@@ -27,19 +27,17 @@
         </div>
 
         <form class="searchbar d-none d-xl-flex ms-auto">
+
             <div class="position-absolute top-50 translate-middle-y search-icon ms-3">
                 <i class="bi bi-search"></i>
             </div>
 
-            <input
-                class="form-control"
-                type="text"
-                placeholder="Search jobs..."
-            >
+            <input class="form-control" type="text" placeholder="Search jobs...">
 
             <div class="position-absolute top-50 translate-middle-y d-block d-xl-none search-close-icon">
                 <i class="bi bi-x-lg"></i>
             </div>
+
         </form>
 
 
@@ -51,16 +49,15 @@
                 {{-- Notifications --}}
                 <li class="nav-item dropdown dropdown-large">
 
-                    <a
-                        class="nav-link dropdown-toggle dropdown-toggle-nocaret"
-                        href="#"
-                        data-bs-toggle="dropdown"
-                    >
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
+                        data-bs-toggle="dropdown">
+
                         <i class="bi bi-bell fs-5"></i>
 
                         <span class="badge rounded-pill bg-danger position-absolute top-0 start-100 translate-middle">
                             0
                         </span>
+
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-end">
@@ -73,8 +70,11 @@
 
                         <li>
                             <div class="text-center text-muted py-3">
+
                                 <i class="bi bi-bell-slash fs-4 d-block mb-2"></i>
+
                                 No new notifications
+
                             </div>
                         </li>
 
@@ -86,19 +86,23 @@
                 {{-- User --}}
                 <li class="nav-item dropdown">
 
-                    <a
-                        class="nav-link dropdown-toggle dropdown-toggle-nocaret"
-                        href="#"
-                        data-bs-toggle="dropdown"
-                    >
+                    <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
+                        data-bs-toggle="dropdown">
 
                         <div class="user-setting d-flex align-items-center gap-2">
 
-                            <img
-                                src="{{ asset('assets/images/avatars/avatar-1.png') }}"
-                                class="user-img"
-                                alt="User"
-                            >
+                            {{-- Company Logo --}}
+                            @if (Auth::user()->company?->logo)
+                                <img src="{{ asset('storage/' . Auth::user()->company->logo) }}"
+                                    class="rounded-circle border shadow-sm"
+                                    style="width:42px;height:42px;object-fit:cover;"
+                                    alt="{{ Auth::user()->company->name }}">
+                            @else
+                                <div class="rounded-circle bg-light border d-flex align-items-center justify-content-center shadow-sm"
+                                    style="width:42px;height:42px;">
+                                    <i class="bi bi-buildings-fill text-secondary fs-4"></i>
+                                </div>
+                            @endif
 
                             <div class="user-name d-none d-sm-block">
                                 {{ Auth::user()->name }}
@@ -109,6 +113,7 @@
                     </a>
 
 
+                    {{-- Dropdown --}}
                     <ul class="dropdown-menu dropdown-menu-end">
 
                         {{-- User Info --}}
@@ -118,13 +123,18 @@
 
                                 <div class="d-flex align-items-center">
 
-                                    <img
-                                        src="{{ asset('assets/images/avatars/avatar-1.png') }}"
-                                        alt="User"
-                                        class="rounded-circle"
-                                        width="50"
-                                        height="50"
-                                    >
+                                    {{-- Company Logo --}}
+                                    @if (Auth::user()->company?->logo)
+                                        <img src="{{ asset('storage/' . Auth::user()->company->logo) }}"
+                                            class="rounded-circle border shadow-sm"
+                                            style="width:52px;height:52px;object-fit:cover;"
+                                            alt="{{ Auth::user()->company->name }}">
+                                    @else
+                                        <div class="rounded-circle bg-light border d-flex align-items-center justify-content-center shadow-sm"
+                                            style="width:52px;height:52px;">
+                                            <i class="bi bi-buildings-fill text-secondary fs-3"></i>
+                                        </div>
+                                    @endif
 
                                     <div class="ms-3">
 
@@ -153,10 +163,7 @@
                         {{-- Dashboard --}}
                         <li>
 
-                            <a
-                                class="dropdown-item"
-                                href="{{ url('/dashboard') }}"
-                            >
+                            <a class="dropdown-item" href="{{ url('/dashboard') }}">
 
                                 <div class="d-flex align-items-center">
 
@@ -178,10 +185,7 @@
                         {{-- Home --}}
                         <li>
 
-                            <a
-                                class="dropdown-item"
-                                href="{{ url('/') }}"
-                            >
+                            <a class="dropdown-item" href="{{ url('/') }}">
 
                                 <div class="d-flex align-items-center">
 
@@ -200,22 +204,19 @@
                         </li>
 
 
-                        {{-- Profile --}}
+                        {{-- Company Profile --}}
                         <li>
 
-                            <a
-                                class="dropdown-item"
-                                href="{{route('employer.company.index')}}"
-                            >
+                            <a class="dropdown-item" href="{{ route('employer.company.index') }}">
 
                                 <div class="d-flex align-items-center">
 
                                     <div class="setting-icon">
-                                        <i class="bi bi-person"></i>
+                                        <i class="bi bi-building"></i>
                                     </div>
 
                                     <div class="setting-text ms-3">
-                                        <span>My Profile</span>
+                                        <span>Company Profile</span>
                                     </div>
 
                                 </div>
@@ -233,17 +234,11 @@
                         {{-- Logout --}}
                         <li>
 
-                            <form
-                                action="{{ route('logout') }}"
-                                method="POST"
-                            >
+                            <form action="{{ route('logout') }}" method="POST">
 
                                 @csrf
 
-                                <button
-                                    type="submit"
-                                    class="dropdown-item"
-                                >
+                                <button type="submit" class="dropdown-item">
 
                                     <div class="d-flex align-items-center">
 
@@ -271,5 +266,6 @@
 
         </div>
 
+    </nav>
     </nav>
 </header>
