@@ -16,6 +16,7 @@
 
     <!-- loader-->
     <link href="{{ asset('') }}assets/css/pace.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
     <title>CareerBridge_Register</title>
 </head>
@@ -37,118 +38,124 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="card-body p-4 p-sm-5">
-                                    
-                                    
-                                    
-                                        <h5 class="card-title">Sign Up</h5>
-                                        <p class="card-text mb-4">See your growth and get consulting support!</p>
-                                        
-                                        <form action="{{ route('register') }}" method="POST" class="form-body">
-                                            @csrf
-                                            
-                                            <!-- Role Selection Section -->
-                                            <div class="mb-4">
-                                                <label class="form-label fw-bold text-dark">Select Your Account Type</label>
-                                                <div class="row g-2">
-                                                    <div class="col-6">
-                                                        <input type="radio" class="btn-check" name="role" id="jobSeekerRole" value="job_seeker" checked autocomplete="off">
-                                                        <label class="btn btn-outline-primary w-100 radius-30 py-2" for="jobSeekerRole">
-                                                            <i class="bi bi-person-badge me-1"></i> Job Seeker
-                                                        </label>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <input type="radio" class="btn-check" name="role" id="employerRole" value="employer" autocomplete="off">
-                                                        <label class="btn btn-outline-primary w-100 radius-30 py-2" for="employerRole">
-                                                            <i class="bi bi-briefcase me-1"></i> Employer
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
 
-                                            <div class="d-grid">
-                                                <a class="btn btn-white radius-30" href="{{ route('social.redirect', 'google') }}">
-                                                    <span class="d-flex justify-content-center align-items-center">
-                                                        <img class="me-2" src="assets/images/icons/search.svg"
-                                                            width="16" alt="">
-                                                        <span>Sign up with Google</span>
-                                                    </span>
-                                                </a>
-                                            </div>
-                                            <div class="login-separater text-center mb-4"> <span>OR SIGN UP WITH
-                                                    EMAIL</span>
-                                                <hr>
-                                            </div>
-                                            <div class="row g-3">
-                                                <div class="col-12 ">
-                                                    <label for="inputName" class="form-label">Name</label>
-                                                    <div class="ms-auto position-relative">
-                                                        <div
-                                                            class="position-absolute top-50 translate-middle-y search-icon px-3">
-                                                            <i class="bi bi-person-circle"></i>
-                                                        </div>
-                                                        <input type="text" class="form-control radius-30 ps-5"
-                                                            id="inputName" placeholder="Enter Name" name="name">
-                                                    </div>
+
+
+                                    <h5 class="card-title">Sign Up</h5>
+                                    <p class="card-text mb-4">See your growth and get consulting support!</p>
+
+                                    <form action="{{ route('register') }}" method="POST" class="form-body">
+                                        @csrf
+
+                                        <!-- Role Selection Section -->
+                                        <div class="mb-4">
+                                            <label class="form-label fw-bold text-dark">Select Your Account Type</label>
+                                            <div class="row g-2">
+                                                <div class="col-6">
+                                                    <input type="radio" class="btn-check" name="role"
+                                                        id="jobSeekerRole" value="job_seeker" checked
+                                                        autocomplete="off">
+                                                    <label class="btn btn-outline-primary w-100 radius-30 py-2"
+                                                        for="jobSeekerRole">
+                                                        <i class="bi bi-person-badge me-1"></i> Job Seeker
+                                                    </label>
                                                 </div>
-                                                <div class="col-12">
-                                                    <label for="inputEmailAddress" class="form-label">Email
-                                                        Address</label>
-                                                    <div class="ms-auto position-relative">
-                                                        <div
-                                                            class="position-absolute top-50 translate-middle-y search-icon px-3">
-                                                            <i class="bi bi-envelope-fill"></i>
-                                                        </div>
-                                                        <input type="email" class="form-control radius-30 ps-5"
-                                                            id="inputEmailAddress" placeholder="Email Address"
-                                                            name="email">
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <label for="inputChoosePassword" class="form-label">Enter
-                                                        Password</label>
-                                                    <div class="ms-auto position-relative">
-                                                        <div
-                                                            class="position-absolute top-50 translate-middle-y search-icon px-3">
-                                                            <i class="bi bi-lock-fill"></i>
-                                                        </div>
-                                                        <input type="password" class="form-control radius-30 ps-5"
-                                                            id="inputChoosePassword" placeholder="Enter Password"
-                                                            name="password">
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <label for="inputConfirmPassword" class="form-label">Enter Confirm
-                                                        Password</label>
-                                                    <div class="ms-auto position-relative">
-                                                        <div
-                                                            class="position-absolute top-50 translate-middle-y search-icon px-3">
-                                                            <i class="bi bi-lock-fill"></i>
-                                                        </div>
-                                                        <input type="password" class="form-control radius-30 ps-5"
-                                                            id="inputConfirmPassword" placeholder="Enter Password"
-                                                            name="password_confirmation">
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-check form-switch">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            id="flexSwitchCheckChecked">
-                                                        <label class="form-check-label" for="flexSwitchCheckChecked">I
-                                                            Agree to the Terms & Conditions</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="d-grid">
-                                                        <button class="btn btn-primary radius-30">Sign
-                                                            Up</button>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <p class="mb-0">Already have an account? <a
-                                                            href="{{route('login')}}">Sign in here</a></p>
+                                                <div class="col-6">
+                                                    <input type="radio" class="btn-check" name="role"
+                                                        id="employerRole" value="employer" autocomplete="off">
+                                                    <label class="btn btn-outline-primary w-100 radius-30 py-2"
+                                                        for="employerRole">
+                                                        <i class="bi bi-briefcase me-1"></i> Employer
+                                                    </label>
                                                 </div>
                                             </div>
-                                        </form>
+                                        </div>
+
+                                        <div class="d-grid">
+                                            <a class="btn btn-white radius-30"
+                                                href="{{ route('social.redirect', 'google') }}">
+                                                <span class="d-flex justify-content-center align-items-center">
+                                                    <img class="me-2" src="assets/images/icons/search.svg"
+                                                        width="16" alt="">
+                                                    <span>Sign up with Google</span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <div class="login-separater text-center mb-4"> <span>OR SIGN UP WITH
+                                                EMAIL</span>
+                                            <hr>
+                                        </div>
+                                        <div class="row g-3">
+                                            <div class="col-12 ">
+                                                <label for="inputName" class="form-label">Name</label>
+                                                <div class="ms-auto position-relative">
+                                                    <div
+                                                        class="position-absolute top-50 translate-middle-y search-icon px-3">
+                                                        <i class="bi bi-person-circle"></i>
+                                                    </div>
+                                                    <input type="text" class="form-control radius-30 ps-5"
+                                                        id="inputName" placeholder="Enter Name" name="name">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="inputEmailAddress" class="form-label">Email
+                                                    Address</label>
+                                                <div class="ms-auto position-relative">
+                                                    <div
+                                                        class="position-absolute top-50 translate-middle-y search-icon px-3">
+                                                        <i class="bi bi-envelope-fill"></i>
+                                                    </div>
+                                                    <input type="email" class="form-control radius-30 ps-5"
+                                                        id="inputEmailAddress" placeholder="Email Address"
+                                                        name="email">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="inputChoosePassword" class="form-label">Enter
+                                                    Password</label>
+                                                <div class="ms-auto position-relative">
+                                                    <div
+                                                        class="position-absolute top-50 translate-middle-y search-icon px-3">
+                                                        <i class="bi bi-lock-fill"></i>
+                                                    </div>
+                                                    <input type="password" class="form-control radius-30 ps-5"
+                                                        id="inputChoosePassword" placeholder="Enter Password"
+                                                        name="password">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="inputConfirmPassword" class="form-label">Enter Confirm
+                                                    Password</label>
+                                                <div class="ms-auto position-relative">
+                                                    <div
+                                                        class="position-absolute top-50 translate-middle-y search-icon px-3">
+                                                        <i class="bi bi-lock-fill"></i>
+                                                    </div>
+                                                    <input type="password" class="form-control radius-30 ps-5"
+                                                        id="inputConfirmPassword" placeholder="Enter Password"
+                                                        name="password_confirmation">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-check form-switch">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        id="flexSwitchCheckChecked">
+                                                    <label class="form-check-label" for="flexSwitchCheckChecked">I
+                                                        Agree to the Terms & Conditions</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="d-grid">
+                                                    <button class="btn btn-primary radius-30">Sign
+                                                        Up</button>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <p class="mb-0">Already have an account? <a
+                                                        href="{{ route('login') }}">Sign in here</a></p>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -156,7 +163,7 @@
                 </div>
             </div>
         </main>
-      
+
 
         <!--end page main-->
 
@@ -167,6 +174,27 @@
     <!--plugins-->
     <script src="{{ asset('') }}assets/js/jquery.min.js"></script>
     <script src="{{ asset('') }}assets/js/pace.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    @if (session('success'))
+        <script>
+            toastr.success(@json(session('success')));
+        </script>
+    @endif
+
+    @if (session('error'))
+        <script>
+            toastr.error(@json(session('error')));
+        </script>
+    @endif
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <script>
+                toastr.error(@json($error));
+            </script>
+        @endforeach
+    @endif
 
 
 </body>

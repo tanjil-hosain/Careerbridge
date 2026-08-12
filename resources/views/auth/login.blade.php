@@ -19,8 +19,9 @@
 
     <!-- loader-->
     <link href="{{ asset('') }}assets/css/pace.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-    <title>Career - Bootstrap 5 Admin Template</title>
+    <title>CareerBridge-login</title>
 </head>
 
 <body>
@@ -41,10 +42,11 @@
                                 <div class="card-body p-4 p-sm-5">
                                     <h5 class="card-title">Sign In</h5>
                                     <p class="card-text mb-5">See your growth and get consulting support!</p>
-                                    <form action="{{route('login')}}" method="POST" class="form-body">
+                                    <form action="{{ route('login') }}" method="POST" class="form-body">
                                         @csrf
                                         <div class="d-grid">
-                                            <a class="btn btn-white radius-30" href="{{ route('social.redirect', 'google') }}">
+                                            <a class="btn btn-white radius-30"
+                                                href="{{ route('social.redirect', 'google') }}">
                                                 <span class="d-flex justify-content-center align-items-center">
                                                     <img class="me-2" src="assets/images/icons/search.svg"
                                                         width="16" alt="">
@@ -62,9 +64,11 @@
                                                 <div class="ms-auto position-relative">
                                                     <div
                                                         class="position-absolute top-50 translate-middle-y search-icon px-3">
-                                                        <i class="bi bi-envelope-fill"></i></div>
+                                                        <i class="bi bi-envelope-fill"></i>
+                                                    </div>
                                                     <input type="email" class="form-control radius-30 ps-5"
-                                                        id="inputEmailAddress" placeholder="Email Address" name="email">
+                                                        id="inputEmailAddress" placeholder="Email Address"
+                                                        name="email">
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -73,9 +77,11 @@
                                                 <div class="ms-auto position-relative">
                                                     <div
                                                         class="position-absolute top-50 translate-middle-y search-icon px-3">
-                                                        <i class="bi bi-lock-fill"></i></div>
+                                                        <i class="bi bi-lock-fill"></i>
+                                                    </div>
                                                     <input type="password" class="form-control radius-30 ps-5"
-                                                        id="inputChoosePassword" placeholder="Enter Password" name="password">
+                                                        id="inputChoosePassword" placeholder="Enter Password"
+                                                        name="password">
                                                 </div>
                                             </div>
                                             <div class="col-6">
@@ -97,7 +103,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <p class="mb-0">Don't have an account yet? <a
-                                                        href="{{route('register')}}">Sign up here</a></p>
+                                                        href="{{ route('register') }}">Sign up here</a></p>
                                             </div>
                                         </div>
                                     </form>
@@ -116,8 +122,29 @@
 
 
     <!--plugins-->
-    <script src="{{asset('')}}assets/js/jquery.min.js"></script>
-    <script src="{{asset('')}}assets/js/pace.min.js"></script>
+    <script src="{{ asset('') }}assets/js/jquery.min.js"></script>
+    <script src="{{ asset('') }}assets/js/pace.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+@if(session('success'))
+    <script>
+        toastr.success(@json(session('success')));
+    </script>
+@endif
+
+@if(session('error'))
+    <script>
+        toastr.error(@json(session('error')));
+    </script>
+@endif
+
+@if($errors->any())
+    @foreach($errors->all() as $error)
+        <script>
+            toastr.error(@json($error));
+        </script>
+    @endforeach
+@endif
 
 
 </body>
