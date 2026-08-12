@@ -205,7 +205,7 @@
 
                             <a
                                 class="dropdown-item"
-                                href="#"
+                                href="{{route('job_seeker.profile.index')}}"
                             >
 
                                 <div class="d-flex align-items-center">
