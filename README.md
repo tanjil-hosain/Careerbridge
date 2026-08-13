@@ -193,7 +193,7 @@ CareerBridge/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/careerbridge.git
+git clone https://github.com/tanjil-hosain/Careerbridge.git
 ```
 
 Move into the project directory:
